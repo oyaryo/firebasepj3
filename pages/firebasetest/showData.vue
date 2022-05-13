@@ -1,10 +1,18 @@
 <template>
-  <div>
-    <h2>データの表示</h2>
-    <div v-for="(task, index) in tasks" :key="index">
-      id: {{ task.id }} / title: {{ task.title }}
-    </div>
-  </div>
+  <v-app>
+    <v-container>
+      <h2>データの表示</h2>
+      <div v-for="(task, index) in tasks" :key="index">
+        id: {{ task.id }} / title: {{ task.title }}
+      </div>
+      <v-spacer></v-spacer>
+      <v-row>
+        <v-col cols="3">
+          <v-btn color="primary" to="/">トップページへ</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -32,4 +40,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

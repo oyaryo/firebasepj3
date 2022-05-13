@@ -39,6 +39,7 @@ export default {
         .then((userCredential) => {
           console.log(userCredential.user);
           console.log("ユーザー登録完了");
+          
         })
         .catch((e) => {
           alert(e.message);
