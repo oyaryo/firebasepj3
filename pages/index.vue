@@ -4,7 +4,7 @@
     <!-- <Tutorial /> -->
     <v-main>
       <v-container fluid>
-        <h1>トップページ</h1>
+        <h2>トップページ</h2>
         <v-row>
           <v-col cols="3">
             <v-btn color="primary" to="/firebasetest/showData"
