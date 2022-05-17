@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app></v-app-bar>
+    <v-app-bar app>uId: {{ userUid }}</v-app-bar>
     <v-main>
       <v-container>
         <h2>データの表示</h2>
@@ -25,10 +25,13 @@
 
 <script>
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+
 export default {
   data() {
     return {
       users: [],
+      userUid: ''
     };
   },
   async created() {
@@ -42,6 +45,14 @@ export default {
         console.log(doc.data().email);
         console.log(doc.data().password);
       });
+
+      const auth = getAuth(this.$firebase);
+      onAuthStateChanged(auth, (user) => {
+        if(user){
+          this.userUid = user.uid;
+          console.log(this.userUid);
+        }
+      })
     } catch (e) {
       console.error("error: ", e);
     }

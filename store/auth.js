@@ -26,7 +26,7 @@ export const actions = {
         commit("setLoginState", true);
         commit("setUserUid", userCredential.user.uid);
         commit("setEmail", userCredential.user.email);
-        console.log("ログイン登録完了");
+        console.log("ログイン完了");
         this.$router.push("/");
       })
       .catch((e) => {
