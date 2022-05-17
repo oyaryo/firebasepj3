@@ -25,13 +25,13 @@
 
 <script>
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   data() {
     return {
       users: [],
-      userUid: ''
+      userUid: "",
     };
   },
   async created() {
@@ -48,11 +48,10 @@ export default {
 
       const auth = getAuth(this.$firebase);
       onAuthStateChanged(auth, (user) => {
-        if(user){
+        if (user) {
           this.userUid = user.uid;
-          console.log(this.userUid);
         }
-      })
+      });
     } catch (e) {
       console.error("error: ", e);
     }

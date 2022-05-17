@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, Firestore } from "firebase/firestore";
 export default {
   data() {
     return {
@@ -65,9 +65,8 @@ export default {
       try {
         const db = getFirestore(this.$firebase);
         const docRef = await addDoc(collection(db, "users"), {
-          displayName: this.displayName,
           email: this.email,
-          password: this.password
+          password: this.password,
         });
         // console.log("追加したデータのID：　", docRef.id);
         // console.log("追加したデータ：　", this.keyword)

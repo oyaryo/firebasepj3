@@ -5,7 +5,6 @@
       <v-container>
         <v-row>
           <v-col cols="6">
-            <v-text-field v-model="displayName" label="表示名" />
             <v-text-field v-model="email" label="メールアドレス" />
             <v-text-field v-model="password" label="パスワード" />
           </v-col>
@@ -25,18 +24,10 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {
-  getFirestore,
-  // collection,
-  doc,
-  setDoc,
-  Firestore,
-} from "firebase/firestore";
 
 export default {
   data() {
     return {
-      displayName: "",
       email: "",
       password: "",
     };
@@ -44,25 +35,11 @@ export default {
   methods: {
     signUp() {
       const auth = getAuth(this.$firebase);
-      createUserWithEmailAndPassword(
-        auth,
-        // this.displayName,
-        this.email,
-        this.password
-      )
+      createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           console.log(userCredential.user);
           console.log("ユーザー登録完了");
-
-          const db = getFirestore(this.$firebase);
-          const docRef = setDoc(
-            doc(db, "users", userCredential.user.uid),
-            {
-              displayName: this.displayName,
-              email: this.email,
-              password: this.password,
-            }
-          );
+          
         })
         .catch((e) => {
           alert(e.message);
