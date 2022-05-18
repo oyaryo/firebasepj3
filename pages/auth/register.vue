@@ -31,6 +31,7 @@ import {
   doc,
   setDoc,
   Firestore,
+  serverTimestamp,
 } from "firebase/firestore";
 
 export default {
@@ -39,6 +40,8 @@ export default {
       displayName: "",
       email: "",
       password: "",
+      createdAt: "",
+      updateAt: "",
     };
   },
   methods: {
@@ -55,14 +58,13 @@ export default {
           console.log("ユーザー登録完了");
 
           const db = getFirestore(this.$firebase);
-          const docRef = setDoc(
-            doc(db, "users", userCredential.user.uid),
-            {
-              displayName: this.displayName,
-              email: this.email,
-              password: this.password,
-            }
-          );
+          const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
+            displayName: this.displayName,
+            email: this.email,
+            password: this.password,
+            createdAt: serverTimestamp(),
+            updateAt: this.updateAt
+          });
         })
         .catch((e) => {
           alert(e.message);

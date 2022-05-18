@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 export default {
   data() {
