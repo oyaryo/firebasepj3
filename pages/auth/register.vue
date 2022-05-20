@@ -49,7 +49,6 @@ export default {
       const auth = getAuth(this.$firebase);
       createUserWithEmailAndPassword(
         auth,
-        // this.displayName,
         this.email,
         this.password
       )

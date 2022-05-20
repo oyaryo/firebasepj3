@@ -7,15 +7,27 @@
         <table>
           <tr>
             <th>お名前：</th>
-            <td>{{ displayName }}</td>
+            <td>
+              <input
+                type="text"
+                v-model="displayName"
+                :placeholder="displayName"
+              />
+            </td>
           </tr>
           <tr>
             <th>メールアドレス：</th>
-            <td>{{ email }}</td>
+            <td>
+              <input type="email" v-model="email" :placeholder="email" />
+            </td>
           </tr>
           <tr>
             <th>パスワード：</th>
-            <td>{{ password }}</td>
+            <td>
+              <v-btn text @click="sendResetPassword"
+                >（パスワードを変更する）</v-btn
+              >
+            </td>
           </tr>
           <tr>
             <th>登録日：</th>
@@ -23,7 +35,7 @@
           </tr>
           <tr>
             <th>更新日：</th>
-            <td>{{ createdAt }}}</td>
+            <td>{{ updatedAt }}</td>
           </tr>
         </table>
         <v-row>
@@ -33,11 +45,9 @@
           <v-col cols="3">
             <v-btn color="secondary" to="/">トップページへ</v-btn>
           </v-col>
-          <!-- <v-col cols="3">
-            <div v-show="isLoggedIn">
-              <v-btn text @click="logout">ログアウト</v-btn>
-            </div>
-          </v-col> -->
+          <v-col cols="3">
+            <v-btn color="error" @click="testMethod">テスト</v-btn>
+          </v-col>
         </v-row>
       </v-container>
     </v-main>
@@ -50,8 +60,20 @@
 </template>
 
 <script>
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+  updateProfile,
+  updateEmail,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export default {
   data() {
@@ -64,37 +86,83 @@ export default {
       updatedAt: "",
     };
   },
-  async created() {
+
+  async mounted() {
     try {
       const auth = getAuth(this.$firebase);
+      const user = auth.currentUser;
+
       await onAuthStateChanged(auth, (user) => {
         if (user) {
           this.userUid = user.uid;
+          this.displayName = user.displayName;
+          this.email = user.email;
+          this.updatedAt = this.testMethod();
+        } else {
+          console.error("No user data.");
         }
-        this.showInfo();
       });
     } catch (e) {
       console.log("error: ", e);
     }
   },
+
   methods: {
-    async showInfo() {
+    update() {
+      const auth = getAuth(this.$firebase);
+      updateProfile(auth.currentUser, {
+        displayName: this.displayName,
+      })
+        .then(() => {
+          console.log("displayName更新完了");
+        })
+        .catch((e) => {
+          console.error("error: ", e);
+        });
+
+      updateEmail(auth.currentUser, this.email)
+        .then(() => {
+          console.log("email更新完了");
+        })
+        .catch((e) => {
+          console.error("error: ", e);
+        });
+
       const db = getFirestore(this.$firebase);
-      const docRef = doc(db, "users", this.userUid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data: ", docSnap.data());
-        this.displayName = docSnap.get("displayName");
-        this.email = docSnap.get("email");
-        this.password = docSnap.get("password");
-        this.createdAt = docSnap.get("createdAt");
-        this.updatedAt = docSnap.get("updatedAt");
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const updateTimestamp = updateDoc(docRef, {
+        updatedAt: serverTimestamp()
+      });
+    },
+
+    // テキストボタンをクリックでアラートを表示
+    sendResetPassword() {
+      const result = confirm("パスワードの再設定メールを送信します。");
+      if (result) {
+        const auth = getAuth(this.$firebase);
+        sendPasswordResetEmail(auth, email).then(() => {
+          console.log("パスワードの再設定メールを送信しました。");
+        });
       } else {
-        console.log("No such document.");
+        console.log("キャンセルされました。");
       }
     },
-    update() {
-      console.log("update");
+
+    // テスト用
+    async testMethod() {
+      const auth = getAuth(this.$firebase);
+      const db = getFirestore(this.$firebase);
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const result = docSnap.get('updatedAt');
+        console.log(typeof result);
+        return result;
+      } else {
+        console.log("No such document!");
+      }
+      console.log("debug");
     },
   },
 };
@@ -104,6 +172,9 @@ export default {
 table {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+td {
+  padding: 15px 0;
 }
 th {
   text-align: right;
