@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>uId: {{ userUid }}</v-app-bar>
+    <v-app-bar app></v-app-bar>
     <v-main>
       <v-container>
         <h2>データの表示</h2>

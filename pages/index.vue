@@ -1,6 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app></v-app-bar>
+    <v-app-bar app>
+      <div v-show="isLoggedIn">
+        <v-btn text to="./mypage">マイページ</v-btn>
+      </div>
+      </v-app-bar>
     <!-- <Tutorial /> -->
     <v-main>
       <v-container fluid>

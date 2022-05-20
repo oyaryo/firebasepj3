@@ -6,6 +6,10 @@
         <h2>マイページ</h2>
         <table>
           <tr>
+            <th>画像：</th>
+            <td><img :src="photoUrl" alt="photoImage"></td>
+          </tr>
+          <tr>
             <th>お名前：</th>
             <td>
               <input
@@ -45,9 +49,9 @@
           <v-col cols="3">
             <v-btn color="secondary" to="/">トップページへ</v-btn>
           </v-col>
-          <v-col cols="3">
-            <v-btn color="error" @click="testMethod">テスト</v-btn>
-          </v-col>
+          <!-- <v-col cols="3">
+            <v-btn color="error" @click="updatedAtServerTimestamp">テスト</v-btn>
+          </v-col> -->
         </v-row>
       </v-container>
     </v-main>
@@ -79,6 +83,7 @@ export default {
   data() {
     return {
       userUid: "",
+      photoUrl: '',
       displayName: "",
       email: "",
       password: "",
@@ -89,15 +94,19 @@ export default {
 
   async mounted() {
     try {
+      
       const auth = getAuth(this.$firebase);
       const user = auth.currentUser;
 
       await onAuthStateChanged(auth, (user) => {
         if (user) {
+          this.photoUrl = user.photoURL;
           this.userUid = user.uid;
           this.displayName = user.displayName;
           this.email = user.email;
-          this.updatedAt = this.testMethod();
+          this.createdAt = user.metadata.creationTime;
+          this.getUpdatedAt();
+          console.log(user);
         } else {
           console.error("No user data.");
         }
@@ -128,14 +137,10 @@ export default {
           console.error("error: ", e);
         });
 
-      const db = getFirestore(this.$firebase);
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      const updateTimestamp = updateDoc(docRef, {
-        updatedAt: serverTimestamp()
-      });
+      this.updatedAtServerTimestamp();
     },
 
-    // テキストボタンをクリックでアラートを表示
+    // 「（パスワードを変更する）」テキストボタンをクリックでアラートを表示
     sendResetPassword() {
       const result = confirm("パスワードの再設定メールを送信します。");
       if (result) {
@@ -148,22 +153,28 @@ export default {
       }
     },
 
-    // テスト用
-    async testMethod() {
+    // update()のタイミングでfirestoreのupdatedAtを更新
+    async updatedAtServerTimestamp() {
       const auth = getAuth(this.$firebase);
       const db = getFirestore(this.$firebase);
       const docRef = doc(db, "users", auth.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const result = docSnap.get('updatedAt');
-        console.log(typeof result);
-        return result;
-      } else {
-        console.log("No such document!");
-      }
-      console.log("debug");
+      await updateDoc(docRef,{
+        updatedAt: serverTimestamp(),
+      })
     },
+
+    // mountedで呼んで更新日をセットする
+    async getUpdatedAt(){
+      const auth = getAuth(this.$firebase);
+      const db = getFirestore(this.$firebase);
+      const docRef = doc(db, 'users', auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()){
+        this.updatedAt = docSnap.data().updatedAt;
+      } else {
+        console.error('No such document!');
+      }
+    }
   },
 };
 </script>

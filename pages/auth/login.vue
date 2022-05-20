@@ -6,7 +6,7 @@
         <v-row>
           <v-col cols="6">
             <v-text-field v-model="email" label="メールアドレス" />
-            <v-text-field v-model="password" label="パスワード" />
+            <v-text-field v-model="password" label="パスワード" type="password"/>
           </v-col>
         </v-row>
         <v-row>

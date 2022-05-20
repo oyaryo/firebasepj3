@@ -31,7 +31,7 @@ export const actions = {
       })
       .catch((e) => {
         alert(e.message);
-        console.log("error: ", e);
+        console.error("error: ", e);
       });
   },
   async logout({ commit }) {
