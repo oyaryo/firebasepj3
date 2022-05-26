@@ -20,6 +20,8 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
 
-export default (context, inject) => {
-  inject("firebase", firebaseApp);
-};
+// export default (context, inject) => {
+//   inject("firebase", firebaseApp);
+// };
+
+export default firebaseApp;

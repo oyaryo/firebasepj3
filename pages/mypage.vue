@@ -7,7 +7,23 @@
         <table>
           <tr>
             <th>画像：</th>
-            <td><img :src="photoUrl" alt="photoImage"></td>
+            <td>
+              <input
+                type="file"
+                ref="fileInput"
+                accept="image/jpeg, image/jpg, image/png"
+                style="display: none"
+                @change="updateIcon"
+              />
+              <v-avatar color="indigo">
+                <v-icon dark v-if="!photoUrl" @click="changeIcon"> mdi-account-circle </v-icon>
+                <img :src="photoUrl" alt="photoImage" v-if="photoUrl" @click="changeIcon"/>
+              </v-avatar>
+              <br />
+              <!-- <input type="file" @change="changeImg" /> -->
+              <!-- <v-btn @click="uploadImage">アップロード</v-btn
+              ><v-btn @click="downloadImage">ダウンロード</v-btn> -->
+            </td>
           </tr>
           <tr>
             <th>お名前：</th>
@@ -64,6 +80,8 @@
 </template>
 
 <script>
+import firebaseApp from "@/plugins/firebase";
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -78,23 +96,29 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 
 export default {
   data() {
     return {
       userUid: "",
-      photoUrl: '',
+      photoUrl: "",
       displayName: "",
       email: "",
       password: "",
       createdAt: "",
       updatedAt: "",
+      thumbnail: "",
     };
   },
 
   async mounted() {
     try {
-      
       const auth = getAuth(this.$firebase);
       const user = auth.currentUser;
 
@@ -118,7 +142,8 @@ export default {
 
   methods: {
     update() {
-      const auth = getAuth(this.$firebase);
+      // const auth = getAuth(this.$firebase);
+      const auth = getAuth(firebaseApp);
       updateProfile(auth.currentUser, {
         displayName: this.displayName,
       })
@@ -145,9 +170,13 @@ export default {
       const result = confirm("パスワードの再設定メールを送信します。");
       if (result) {
         const auth = getAuth(this.$firebase);
-        sendPasswordResetEmail(auth, email).then(() => {
-          console.log("パスワードの再設定メールを送信しました。");
-        });
+        sendPasswordResetEmail(auth, this.email)
+          .then(() => {
+            console.log(`パスワードの再設定を${this.email}へ送信しました。`);
+          })
+          .catch((e) => {
+            console.error("error: ", e);
+          });
       } else {
         console.log("キャンセルされました。");
       }
@@ -158,23 +187,132 @@ export default {
       const auth = getAuth(this.$firebase);
       const db = getFirestore(this.$firebase);
       const docRef = doc(db, "users", auth.currentUser.uid);
-      await updateDoc(docRef,{
+      await updateDoc(docRef, {
         updatedAt: serverTimestamp(),
-      })
+      });
     },
 
     // mountedで呼んで更新日をセットする
-    async getUpdatedAt(){
+    async getUpdatedAt() {
       const auth = getAuth(this.$firebase);
       const db = getFirestore(this.$firebase);
-      const docRef = doc(db, 'users', auth.currentUser.uid);
+      const docRef = doc(db, "users", auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
-      if(docSnap.exists()){
-        this.updatedAt = docSnap.data().updatedAt;
+      if (docSnap.exists()) {
+        let timestamp = docSnap.data().updatedAt;
+        this.updatedAt = timestamp.toDate();
       } else {
-        console.error('No such document!');
+        console.error("No such document!");
       }
-    }
+    },
+
+    uploadImage() {
+      // Create a root reference
+      const storage = getStorage(this.$firebase);
+
+      // Create a reference to 'mountains.jpg'
+      const mountainsRef = ref(storage, "mountains.jpg");
+
+      // Create a reference to 'images/mountains.jpg'
+      const mountainImagesRef = ref(storage, "images/mountains.jpg");
+
+      // While the file names are the same, the references point to different files
+      mountainsRef.name === mountainImagesRef.name; // true
+      mountainsRef.fullPath === mountainImagesRef.fullPath; // false
+    },
+
+    // changeImg(e) {
+    //   const storage = getStorage(this.$firebase);
+
+    //   const metadata = {
+    //     contentType: "image/jpeg",
+    //   };
+
+    //   this.thumbnail = e.target.files[0];
+    //   const storageRef = ref(storage, "images/" + this.thumbnail.name);
+
+    //   const uploadTask = uploadBytesResumable(
+    //     storageRef,
+    //     this.thumbnail,
+    //     metadata
+    //   ).then((snapshot) => {
+    //     console.log("Uploaded a blob or file!");
+    //   });
+
+    //   uploadTask.on(
+    //     "state_changed",
+    //     (snapshot) => {
+    //       const progress =
+    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //       console.log("Upload is " + progress + "% done");
+    //       switch (snapshot.state) {
+    //         case "paused":
+    //           console.log("Upload is paused.");
+    //           break;
+    //         case "running":
+    //           console.log("Upload is running.");
+    //           break;
+    //       }
+    //     },
+    //     (error) => {
+    //       switch (error.code) {
+    //         case "storage/unauthorized":
+    //           break;
+    //         case "storage/canceled":
+    //           break;
+    //         case "storage/unknown":
+    //           break;
+    //       }
+    //     },
+    //     () => {
+    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //         console.log("File available at", downloadURL);
+    //       });
+    //     }
+    //   );
+    // },
+
+    downloadImage() {
+      const storage = getStorage(this.$firebase);
+      const imagesRef = ref(storage, "images");
+      const spaceRef = ref(storage, "images/space.jpg");
+      console.log(spaceRef.fullPath);
+      console.log(spaceRef.name);
+      console.log(spaceRef.bucket + "/" + spaceRef.fullPath);
+    },
+
+    // アイコンをクリックすることで画像を変更できる
+    changeIcon() {
+      this.$refs.fileInput.click();
+    },
+    updateIcon() {
+      const auth = getAuth(this.$firebase);
+      const user = auth.currentUser;
+
+      // アップロードする画像を用意する
+      const iconFile = this.$refs.fileInput.files[0];
+      const filePath = `/user/${iconFile.name}`;
+      console.log(iconFile);
+
+      // storageへ画像をアップロードする
+      const storage = getStorage(this.$firebase);
+      const storageRef = ref(storage, filePath);
+      uploadBytes(storageRef, iconFile)
+      .then(async (snapshot) => {
+        console.log("Uploaded a blob or file.");
+
+        // storageにアップロードした画像のURLを取得する
+        const photoUrl = await getDownloadURL(ref(storage, filePath));
+        console.log('photoUrl: ', photoUrl);
+
+        // 取得したURLをユーザーのプロフィール情報にあるphotoUrlへ書き込む
+        updateProfile(user, {
+          photoURL: photoUrl
+        })
+
+        this.photoUrl = photoUrl;
+      });
+    },
   },
 };
 </script>
