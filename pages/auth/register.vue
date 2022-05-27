@@ -1,8 +1,9 @@
 <template>
   <v-app>
-    <div>
+    <v-app-bar app></v-app-bar>
+    <v-main>
       <h2>ユーザー登録</h2>
-      <v-container>
+      <v-container fluid>
         <v-row>
           <v-col cols="6">
             <v-text-field v-model="displayName" label="表示名" />
@@ -19,18 +20,19 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </v-main>
+    <v-footer><FooterView /></v-footer>
   </v-app>
 </template>
 
 <script>
+// import firebaseApp from '@/plugins/firebase';
+
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
   getFirestore,
-  // collection,
   doc,
   setDoc,
-  Firestore,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -46,23 +48,21 @@ export default {
   },
   methods: {
     signUp() {
-      const auth = getAuth(this.$firebase);
-      createUserWithEmailAndPassword(
-        auth,
-        this.email,
-        this.password
-      )
+      // const auth = getAuth(this.$firebase);
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           console.log(userCredential.user);
           console.log("ユーザー登録完了");
 
-          const db = getFirestore(this.$firebase);
+          // const db = getFirestore(this.$firebase);
+          const db = getFirestore();
           const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
             displayName: this.displayName,
             email: this.email,
             password: this.password,
             createdAt: serverTimestamp(),
-            updateAt: this.updateAt
+            updateAt: this.updateAt,
           });
         })
         .catch((e) => {

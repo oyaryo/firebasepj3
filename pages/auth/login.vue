@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <div>
+    <v-app-bar app></v-app-bar>
+    <v-main>
       <h2>ログイン</h2>
-      <v-container>
+      <v-container fluid>
         <v-row>
           <v-col cols="6">
             <v-text-field v-model="email" label="メールアドレス" />
-            <v-text-field v-model="password" label="パスワード" type="password"/>
+            <v-text-field
+              v-model="password"
+              label="パスワード"
+              type="password"
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -18,7 +23,10 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </v-main>
+    <v-footer>
+      <FooterView />
+    </v-footer>
   </v-app>
 </template>
 
@@ -31,14 +39,14 @@ export default {
     };
   },
   methods: {
-    login(){
-      this.$store.dispatch('auth/login',{
+    login() {
+      this.$store.dispatch("auth/login", {
         email: this.email,
-        password: this.password
-      })
-    }
-  }
-}
+        password: this.password,
+      });
+    },
+  },
+};
 </script>
 
 <style></style>

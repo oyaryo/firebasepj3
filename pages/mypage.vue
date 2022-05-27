@@ -16,13 +16,17 @@
                 @change="updateIcon"
               />
               <v-avatar color="indigo">
-                <v-icon dark v-if="!photoUrl" @click="changeIcon"> mdi-account-circle </v-icon>
-                <img :src="photoUrl" alt="photoImage" v-if="photoUrl" @click="changeIcon"/>
+                <v-icon dark v-if="!photoUrl" @click="changeIcon">
+                  mdi-account-circle
+                </v-icon>
+                <img
+                  :src="photoUrl"
+                  alt="photoImage"
+                  v-if="photoUrl"
+                  @click="changeIcon"
+                />
               </v-avatar>
               <br />
-              <!-- <input type="file" @change="changeImg" /> -->
-              <!-- <v-btn @click="uploadImage">アップロード</v-btn
-              ><v-btn @click="downloadImage">ダウンロード</v-btn> -->
             </td>
           </tr>
           <tr>
@@ -71,16 +75,12 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer
-      ><small
-        >© 2022 ConditionYellow Co,.Ltd. All Rights Reserved.</small
-      ></v-footer
-    >
+    <v-footer><FooterView /></v-footer>
   </v-app>
 </template>
 
 <script>
-import firebaseApp from "@/plugins/firebase";
+// import firebaseApp from "@/plugins/firebase";
 
 import {
   getAuth,
@@ -96,12 +96,7 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export default {
   data() {
@@ -119,7 +114,7 @@ export default {
 
   async mounted() {
     try {
-      const auth = getAuth(this.$firebase);
+      const auth = getAuth();
       const user = auth.currentUser;
 
       await onAuthStateChanged(auth, (user) => {
@@ -132,7 +127,7 @@ export default {
           this.getUpdatedAt();
           console.log(user);
         } else {
-          console.error("No user data.");
+          console.log("No user data.");
         }
       });
     } catch (e) {
@@ -200,25 +195,10 @@ export default {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         let timestamp = docSnap.data().updatedAt;
-        this.updatedAt = timestamp.toDate();
+        this.updatedAt = timestamp? timestamp.toDate() : null;
       } else {
         console.error("No such document!");
       }
-    },
-
-    uploadImage() {
-      // Create a root reference
-      const storage = getStorage(this.$firebase);
-
-      // Create a reference to 'mountains.jpg'
-      const mountainsRef = ref(storage, "mountains.jpg");
-
-      // Create a reference to 'images/mountains.jpg'
-      const mountainImagesRef = ref(storage, "images/mountains.jpg");
-
-      // While the file names are the same, the references point to different files
-      mountainsRef.name === mountainImagesRef.name; // true
-      mountainsRef.fullPath === mountainImagesRef.fullPath; // false
     },
 
     // changeImg(e) {
@@ -297,18 +277,17 @@ export default {
       // storageへ画像をアップロードする
       const storage = getStorage(this.$firebase);
       const storageRef = ref(storage, filePath);
-      uploadBytes(storageRef, iconFile)
-      .then(async (snapshot) => {
+      uploadBytes(storageRef, iconFile).then(async (snapshot) => {
         console.log("Uploaded a blob or file.");
 
         // storageにアップロードした画像のURLを取得する
         const photoUrl = await getDownloadURL(ref(storage, filePath));
-        console.log('photoUrl: ', photoUrl);
+        console.log("photoUrl: ", photoUrl);
 
         // 取得したURLをユーザーのプロフィール情報にあるphotoUrlへ書き込む
         updateProfile(user, {
-          photoURL: photoUrl
-        })
+          photoURL: photoUrl,
+        });
 
         this.photoUrl = photoUrl;
       });

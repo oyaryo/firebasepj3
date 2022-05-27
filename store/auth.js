@@ -20,7 +20,7 @@ export const mutations = {
 
 export const actions = {
   async login({ commit }, payload) {
-    const auth = getAuth(this.$firebase);
+    const auth = getAuth();
     signInWithEmailAndPassword(auth, payload.email, payload.password)
       .then((userCredential) => {
         commit("setLoginState", true);
@@ -35,24 +35,25 @@ export const actions = {
       });
   },
   async logout({ commit }) {
-    const auth = getAuth(this.$firebase);
+    const auth = getAuth();
     signOut(auth)
       .then(() => {
         commit("setLoginState", false);
-        commit("setUserUid", '');
-        commit("setEmail", '');
-        this.$router.push('/auth/login');
+        commit("setUserUid", "");
+        commit("setEmail", "");
+        console.log("ログアウト完了");
+        this.$router.push("/auth/login");
       })
-      .catch(e => {
+      .catch((e) => {
         alert(e.message);
-        console.error('error: ', e);
-    })
+        console.error("error: ", e);
+      });
   },
-  addUserInfo({commit}, payload) {
+  addUserInfo({ commit }, payload) {
     commit("setLoginState", true);
     commit("setUserUid", payload.uid);
     commit("setEmail", payload.email);
-  }
+  },
 };
 
 export const getters = {

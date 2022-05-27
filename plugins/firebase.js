@@ -24,4 +24,4 @@ const analytics = getAnalytics(firebaseApp);
 //   inject("firebase", firebaseApp);
 // };
 
-export default firebaseApp;
+// export default firebaseApp;
