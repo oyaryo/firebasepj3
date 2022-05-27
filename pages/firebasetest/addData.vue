@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app></v-app-bar>
+    <v-app-bar app><HeaderView /></v-app-bar>
     <v-main>
       <v-container>
         <h2>ユーザー登録</h2>

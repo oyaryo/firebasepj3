@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app></v-app-bar>
+    <v-app-bar app><HeaderView /></v-app-bar>
     <v-main>
       <v-container fluid>
         <h2>マイページ</h2>
@@ -119,8 +119,8 @@ export default {
 
       await onAuthStateChanged(auth, (user) => {
         if (user) {
-          this.photoUrl = user.photoURL;
           this.userUid = user.uid;
+          this.photoUrl = user.photoURL;
           this.displayName = user.displayName;
           this.email = user.email;
           this.createdAt = user.metadata.creationTime;
@@ -138,7 +138,7 @@ export default {
   methods: {
     update() {
       // const auth = getAuth(this.$firebase);
-      const auth = getAuth(firebaseApp);
+      const auth = getAuth();
       updateProfile(auth.currentUser, {
         displayName: this.displayName,
       })

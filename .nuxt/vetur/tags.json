@@ -2,6 +2,9 @@
   "FooterView": {
     "description": "Auto imported from components/FooterView.vue"
   },
+  "HeaderView": {
+    "description": "Auto imported from components/HeaderView.vue"
+  },
   "NuxtLogo": {
     "description": "Auto imported from components/NuxtLogo.vue"
   },

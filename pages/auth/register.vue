@@ -6,8 +6,12 @@
       <v-container fluid>
         <v-row>
           <v-col cols="6">
-            <v-text-field v-model="displayName" label="表示名" />
-            <v-text-field v-model="email" label="メールアドレス" />
+            <v-text-field
+              v-model="displayName"
+              label="表示名"
+              :rules="nameRules"
+            />
+            <v-text-field v-model="email" label="メールアドレス" :rules="emailRules"/>
             <v-text-field v-model="password" label="パスワード" />
           </v-col>
         </v-row>
@@ -28,47 +32,57 @@
 <script>
 // import firebaseApp from '@/plugins/firebase';
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
-  getFirestore,
-  doc,
-  setDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export default {
   data() {
     return {
       displayName: "",
+      nameRules: [
+        (v) => !!v || "表示名の入力は必須です。",
+        (v) => (v && v.length <= 10) || "10文字以内で入力してください。",
+      ],
       email: "",
+      emailRules: [
+        (v) => !!v || "メールアドレスは必須です。",
+        (v) => /.+@.+\..+/.test(v) || "メールアドレスが不正です。",
+      ],
       password: "",
       createdAt: "",
       updateAt: "",
     };
   },
   methods: {
-    signUp() {
-      // const auth = getAuth(this.$firebase);
+    async signUp() {
       const auth = getAuth();
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
+      await createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then(async (userCredential) => {
+          await updateProfile(userCredential.user, {
+            displayName: this.displayName,
+          });
           console.log(userCredential.user);
           console.log("ユーザー登録完了");
 
-          // const db = getFirestore(this.$firebase);
           const db = getFirestore();
-          const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
-            displayName: this.displayName,
-            email: this.email,
-            password: this.password,
-            createdAt: serverTimestamp(),
-            updateAt: this.updateAt,
+          await setDoc(doc(db, "users", userCredential.user.uid), {
+            // displayName: this.displayName,
+            // email: this.email,
+            // password: this.password,
+            // createdAt: serverTimestamp(),
+            updateAt: serverTimestamp(),
           });
         })
         .catch((e) => {
           alert(e.message);
           console.log("error: ", e);
         });
+
+      this.$router.push("./login");
     },
   },
 };

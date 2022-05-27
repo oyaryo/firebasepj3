@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <div v-show="isLoggedIn">
+      <!-- <div v-show="isLoggedIn">
         <v-btn text to="./mypage">マイページ</v-btn>
-      </div>
+      </div> -->
+      <HeaderView />
       </v-app-bar>
     <!-- <Tutorial /> -->
     <v-main>
@@ -28,7 +29,7 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer><small>© 2022 ConditionYellow Co,.Ltd. All Rights Reserved.</small></v-footer>
+  <v-footer><FooterView /></v-footer>
   </v-app>
 </template>
 
