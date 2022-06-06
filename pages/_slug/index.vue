@@ -1,9 +1,21 @@
 <template>
-  <main class="main">
-    <h1 class="title">{{ data.title }}</h1>
-    <p class="publishedAt">{{ data.publishedAt }}</p>
-    <div class="post" v-html="data.content"></div>
-  </main>
+  <v-app>
+    <v-app-bar app>
+      <HeaderView />
+    </v-app-bar>
+
+    <main class="main">
+      <v-container fluid>
+        <h1 class="title">{{ data.title }}</h1>
+        <p class="publishedAt">{{ data.publishedAt }}</p>
+        <div class="post" v-html="data.content"></div>
+      </v-container>
+    </main>
+
+    <v-footer>
+      <FooterView />
+    </v-footer>
+  </v-app>
 </template>
 
 <script>

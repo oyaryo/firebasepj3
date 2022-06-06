@@ -7,7 +7,7 @@
     <v-main>
       <v-container fluid>
         <div class="key-visual">
-          <img src="./recruit.png" alt="">
+          <img src="@/assets/recruit.png" alt="">
           <h1 class="title-text">Private Gallery</h1>
         </div>
         <hr>
@@ -16,7 +16,7 @@
         <ul>
           <li v-for="content in contents" :key="content.id">
             <nuxt-link :to="`/${content.id}`">
-              {{ content.title }}
+              {{ content.title }}({{ content.publishedAt }})
             </nuxt-link>
           </li>
         </ul>
