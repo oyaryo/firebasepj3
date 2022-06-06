@@ -4,6 +4,7 @@
     <v-main>
       <v-container>
         <h2>データの表示</h2>
+        <img :src="keyVisualUrl" alt="" class="keyVisual">
         <div v-for="(user, index) in users" :key="index">
           名前: {{ user.displayName }}　/　メールアドレス: {{ user.email }}
         </div>
@@ -26,16 +27,27 @@
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 export default {
   data() {
     return {
       users: [],
       userUid: "",
+      keyVisualUrl: "",
     };
   },
   async created() {
     try {
+      const storage = getStorage();
+      const pathReference = ref(
+        storage,
+        "gs://fir-pj3-26803.appspot.com/material/13941689_MotionElements_driving-through-tunnel_converted_503344-640x360-3s-q1.gif"
+      );
+      getDownloadURL(pathReference).then((url) => {
+        this.keyVisualUrl = url;
+      });
+
       const db = getFirestore(this.$firebase);
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
@@ -59,4 +71,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.keyVisual {
+  display: block;
+  margin: 0 auto;
+}
+</style>

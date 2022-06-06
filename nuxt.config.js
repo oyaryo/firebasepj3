@@ -3,7 +3,7 @@ export default {
   ssr: false,
 
   router: {
-    middleware: 'authenticated'
+    middleware: "authenticated",
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -34,9 +34,14 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    "@nuxtjs/vuetify",
-  ],
+  buildModules: ["@nuxtjs/vuetify", "nuxt-microcms-module"],
+  microcms: {
+    options: {
+      serviceDomain: "conditionyellow",
+      apiKey: "1834e7af205d486994be3447af91fbac50b0",
+    },
+    mode: process.env.NODE_ENV === "production" ? "server" : "all",
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

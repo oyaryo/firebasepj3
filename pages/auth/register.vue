@@ -14,6 +14,13 @@
             <v-text-field v-model="email" label="メールアドレス" :rules="emailRules"/>
             <v-text-field v-model="password" label="パスワード" />
           </v-col>
+          <v-alert
+      dense
+      outlined
+      type="error"
+      v-if="this.errorMessage"
+    >{{ errorMessage }}
+      </v-alert>
         </v-row>
         <v-row>
           <v-col cols="3">
@@ -55,6 +62,7 @@ export default {
       password: "",
       createdAt: "",
       updateAt: "",
+      errorMessage: ""
     };
   },
   methods: {
@@ -76,13 +84,14 @@ export default {
             // createdAt: serverTimestamp(),
             updateAt: serverTimestamp(),
           });
+
+          this.$router.push("./login");
         })
         .catch((e) => {
-          alert(e.message);
+          // alert(e.message);
           console.log("error: ", e);
+          this.errorMessage = 'ユーザー登録に失敗しました。';
         });
-
-      this.$router.push("./login");
     },
   },
 };

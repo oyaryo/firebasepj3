@@ -13,6 +13,7 @@ const _dc5779ca = () => interopDefault(import('../pages/auth/register_bk.vue' /*
 const _eec5c2dc = () => interopDefault(import('../pages/firebasetest/addData.vue' /* webpackChunkName: "pages/firebasetest/addData" */))
 const _393aa8a0 = () => interopDefault(import('../pages/firebasetest/showData.vue' /* webpackChunkName: "pages/firebasetest/showData" */))
 const _f84a64f6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _d0085e00 = () => interopDefault(import('../pages/_slug/index.vue' /* webpackChunkName: "pages/_slug/index" */))
 
 const emptyFn = () => {}
 
@@ -61,6 +62,10 @@ export const routerOptions = {
     path: "/",
     component: _f84a64f6,
     name: "index"
+  }, {
+    path: "/:slug",
+    component: _d0085e00,
+    name: "slug"
   }],
 
   fallback: false

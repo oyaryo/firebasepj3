@@ -16,6 +16,7 @@ import { createStore } from './store.js'
 import nuxt_plugin_plugin_449249e3 from 'nuxt_plugin_plugin_449249e3' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_5106062a from 'nuxt_plugin_plugin_5106062a' // Source: ./vuetify/plugin.js (mode: 'all')
 import nuxt_plugin_axios_4681f179 from 'nuxt_plugin_axios_4681f179' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_microcms_09cbedcc from 'nuxt_plugin_microcms_09cbedcc' // Source: ./microcms.js (mode: 'all')
 import nuxt_plugin_firebase_27cb801c from 'nuxt_plugin_firebase_27cb801c' // Source: ../plugins/firebase.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -220,6 +221,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_axios_4681f179 === 'function') {
     await nuxt_plugin_axios_4681f179(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_microcms_09cbedcc === 'function') {
+    await nuxt_plugin_microcms_09cbedcc(app.context, inject)
   }
 
   if (typeof nuxt_plugin_firebase_27cb801c === 'function') {
