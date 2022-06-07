@@ -2,34 +2,29 @@
   <v-app>
     <v-app-bar app></v-app-bar>
     <v-main>
-      <h2>ユーザー登録</h2>
       <v-container fluid>
-        <v-row>
-          <v-col cols="6">
+        <div class="register--box">
+          <v-card class="register--card">
+            <v-card-title class="register--title">ユーザー登録</v-card-title>
+            <v-card-subtitle>ユーザー情報を入力してください。</v-card-subtitle>
             <v-text-field
               v-model="displayName"
               label="表示名"
               :rules="nameRules"
             />
-            <v-text-field v-model="email" label="メールアドレス" :rules="emailRules"/>
+            <v-text-field
+              v-model="email"
+              label="メールアドレス"
+              :rules="emailRules"
+            />
             <v-text-field v-model="password" label="パスワード" />
-          </v-col>
-          <v-alert
-      dense
-      outlined
-      type="error"
-      v-if="this.errorMessage"
-    >{{ errorMessage }}
-      </v-alert>
-        </v-row>
-        <v-row>
-          <v-col cols="3">
+            <v-alert dense outlined type="error" v-if="this.errorMessage"
+              >{{ errorMessage }}
+            </v-alert>
             <v-btn color="primary" @click="signUp">ユーザー登録</v-btn>
-          </v-col>
-          <v-col cols="3">
             <v-btn text to="./login">ログインページ</v-btn>
-          </v-col>
-        </v-row>
+          </v-card>
+        </div>
       </v-container>
     </v-main>
     <v-footer><FooterView /></v-footer>
@@ -37,8 +32,6 @@
 </template>
 
 <script>
-// import firebaseApp from '@/plugins/firebase';
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -62,7 +55,7 @@ export default {
       password: "",
       createdAt: "",
       updateAt: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   },
   methods: {
@@ -88,13 +81,25 @@ export default {
           this.$router.push("./login");
         })
         .catch((e) => {
-          // alert(e.message);
           console.log("error: ", e);
-          this.errorMessage = 'ユーザー登録に失敗しました。';
+          this.errorMessage = "ユーザー登録に失敗しました。";
         });
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.register--box {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.register--card {
+  padding: 20px;
+}
+
+.register--title {
+  display: inline-block;
+}
+</style>

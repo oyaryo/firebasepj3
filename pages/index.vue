@@ -20,8 +20,16 @@
             </nuxt-link>
           </li>
         </ul>
+        <hr>
 
-        <v-row>
+        <!-- Aboutページ -->
+        <h2>About Private Gallery</h2>
+        <p>ここにはコンテンツの概要を記載。<br>
+        それからAboutページへのリンクを設置予定。
+        </p>
+
+
+        <!-- <v-row>
           <v-col cols="3">
             <v-btn color="primary" to="/firebasetest/showData"
               >データを見る</v-btn
@@ -32,7 +40,7 @@
               >データを入力</v-btn
             >
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-container>
     </v-main>
 
