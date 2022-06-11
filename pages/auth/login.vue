@@ -8,7 +8,15 @@
         <div class="login--box">
           <v-card class="login--card">
             <v-card-title class="justify-center">ログイン</v-card-title>
-            <v-card-subtitle class="text-center">ログイン情報を入力してください。</v-card-subtitle>
+            <v-card-subtitle class="text-center"
+              >ログイン情報を入力してください。</v-card-subtitle
+            >
+            <div class="flex justify-center">
+              <v-btn text color="light-blue" to="./SignUp" class="text-xs"
+                >新規ユーザー登録はこちら</v-btn
+              >
+            </div>
+
             <v-form ref="form" v-model="valid">
               <v-text-field
                 v-model="email"
@@ -25,7 +33,7 @@
               <v-btn color="success" @click="login" :disabled="isValid"
                 >ログイン</v-btn
               >
-              <v-btn text to="./register">ユーザー登録</v-btn>
+              <!-- <v-btn text to="./register">ユーザー登録</v-btn> -->
             </v-form>
           </v-card>
         </div>
@@ -47,7 +55,7 @@ export default {
         (v) => /.+@.+\..+/.test(v) || "メールアドレスが不正です。",
       ],
       password: "",
-      valid: true,
+      valid: false,
     };
   },
   computed: {

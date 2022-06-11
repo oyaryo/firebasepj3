@@ -1,32 +1,30 @@
 <template>
-  <!-- <div v-show="isLoggedIn" class="header-menu"> -->
-  <!-- <v-btn text to="mypage">マイページ</v-btn> -->
-
-  <ul class="gnav">
-    <li>
-      <v-avatar color="indigo">
-        <v-icon dark v-if="!photoUrl" @click="toMypage">
-          mdi-account-circle
-        </v-icon>
-        <img
-          :src="photoUrl"
-          alt="photoImage"
-          v-if="photoUrl"
-          @click="toMypage"
-        />
-      </v-avatar>
-      <ul>
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-extrabold text-gray-600">Private Gallery</h1>
+    <nav class="">
+      <ul class="flex justify-end items-center">
+        <li class="gnav--item">ホーム</li>
+        <li class="gnav--item">概要</li>
+        <li class="gnav--item">ギャラリー</li>
+        <li class="gnav--item">ショップ</li>
+        <li class="gnav--item">問い合わせ</li>
+        <li class="gnav--item" @click="logout">ログアウト</li>
         <li>
-          <a href="#" @click="toMypage">マイページ</a>
-        </li>
-        <li>
-          <a href="#" @click="logout">ログアウト</a>
+          <v-avatar color="indigo">
+            <v-icon dark v-if="!photoUrl" @click="toMypage">
+              mdi-account-circle
+            </v-icon>
+            <img
+              :src="photoUrl"
+              alt="photoImage"
+              v-if="photoUrl"
+              @click="toMypage"
+            />
+          </v-avatar>
         </li>
       </ul>
-    </li>
-  </ul>
-
-  <!-- </div> -->
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -100,5 +98,8 @@ export default {
 .gnav li:hover > ul > li {
   height: 2rem;
   overflow: visible;
+}
+.gnav--item:not(:last-child) {
+  margin-right: 30px;
 }
 </style>
