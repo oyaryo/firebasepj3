@@ -58,5 +58,6 @@ export default {
 
 .login--title {
   display: inline-block;
+  margin: 0 auto;
 }
 </style>

@@ -11,6 +11,7 @@ const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpa
 const _75262d19 = () => interopDefault(import('../pages/auth/login_bk.vue' /* webpackChunkName: "pages/auth/login_bk" */))
 const _362afcdd = () => interopDefault(import('../pages/auth/register.vue' /* webpackChunkName: "pages/auth/register" */))
 const _dc5779ca = () => interopDefault(import('../pages/auth/register_bk.vue' /* webpackChunkName: "pages/auth/register_bk" */))
+const _05e5a592 = () => interopDefault(import('../pages/auth/SignUp.vue' /* webpackChunkName: "pages/auth/SignUp" */))
 const _eec5c2dc = () => interopDefault(import('../pages/firebasetest/addData.vue' /* webpackChunkName: "pages/firebasetest/addData" */))
 const _393aa8a0 = () => interopDefault(import('../pages/firebasetest/showData.vue' /* webpackChunkName: "pages/firebasetest/showData" */))
 const _f84a64f6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -55,6 +56,10 @@ export const routerOptions = {
     path: "/auth/register_bk",
     component: _dc5779ca,
     name: "auth-register_bk"
+  }, {
+    path: "/auth/SignUp",
+    component: _05e5a592,
+    name: "auth-SignUp"
   }, {
     path: "/firebasetest/addData",
     component: _eec5c2dc,
