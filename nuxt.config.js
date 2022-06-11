@@ -34,7 +34,11 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ["@nuxtjs/vuetify", "nuxt-microcms-module"],
+  buildModules: [
+    "@nuxtjs/vuetify",
+    "nuxt-microcms-module",
+    "@nuxtjs/tailwindcss",
+  ],
   microcms: {
     options: {
       serviceDomain: "conditionyellow",
@@ -57,4 +61,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  devServerHandlers: [],
 };

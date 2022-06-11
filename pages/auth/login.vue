@@ -7,16 +7,26 @@
       <v-container fluid>
         <div class="login--box">
           <v-card class="login--card">
-            <v-card-title class="login--title">ログイン</v-card-title>
-            <v-card-subtitle>ログイン情報を入力してください。</v-card-subtitle>
-            <v-text-field v-model="email" label="メールアドレス" />
-            <v-text-field
-              v-model="password"
-              label="パスワード"
-              type="password"
-            />
-            <v-btn color="primary" @click="login">ログイン</v-btn>
-            <v-btn text to="./register">ユーザー登録</v-btn>
+            <v-card-title class="justify-center">ログイン</v-card-title>
+            <v-card-subtitle class="text-center">ログイン情報を入力してください。</v-card-subtitle>
+            <v-form ref="form" v-model="valid">
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="メールアドレス"
+                required
+              ></v-text-field>
+
+              <v-text-field
+                v-model="password"
+                type="password"
+                label="パスワード"
+              />
+              <v-btn color="success" @click="login" :disabled="isValid"
+                >ログイン</v-btn
+              >
+              <v-btn text to="./register">ユーザー登録</v-btn>
+            </v-form>
           </v-card>
         </div>
       </v-container>
@@ -32,8 +42,18 @@ export default {
   data() {
     return {
       email: "",
+      emailRules: [
+        (v) => !!v || "メールアドレスを入力してください。",
+        (v) => /.+@.+\..+/.test(v) || "メールアドレスが不正です。",
+      ],
       password: "",
+      valid: true,
     };
+  },
+  computed: {
+    isValid() {
+      return !this.valid;
+    },
   },
   methods: {
     login() {
@@ -54,10 +74,5 @@ export default {
 
 .login--card {
   padding: 20px;
-}
-
-.login--title {
-  display: inline-block;
-  margin: 0 auto;
 }
 </style>

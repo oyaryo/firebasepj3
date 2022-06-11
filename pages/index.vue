@@ -27,6 +27,7 @@
         <p>ここにはコンテンツの概要を記載。<br>
         それからAboutページへのリンクを設置予定。
         </p>
+        <v-btn text to="./AboutPage"> Aboutページへ</v-btn>
 
 
         <!-- <v-row>
