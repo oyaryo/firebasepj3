@@ -195,7 +195,7 @@ export default {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         let timestamp = docSnap.data().updatedAt;
-        this.updatedAt = timestamp? timestamp.toDate() : null;
+        this.updatedAt = timestamp ? timestamp.toDate() : null;
       } else {
         console.error("No such document!");
       }

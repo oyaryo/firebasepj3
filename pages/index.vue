@@ -5,30 +5,19 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
+      <!-- <v-container fluid> -->
         <div class="key-visual">
-          <img src="@/assets/recruit.png" alt="">
-          <h1 class="title-text">Private Gallery</h1>
+          <img src="@/assets/recruit.png" alt="" />
+          <h1 class="title-text font-extrabold text-3xl md:text-5xl tracking-wide">Private Gallery</h1>
         </div>
-        <hr>
         <h2>What's New</h2>
-
-        <ul>
+        <ul class="border border-gray-400">
           <li v-for="content in contents" :key="content.id">
             <nuxt-link :to="`/${content.id}`">
-              {{ content.title }}({{ content.publishedAt }})
+              {{ content.title }}({{ content.publishedAt | dayFormat }})
             </nuxt-link>
           </li>
         </ul>
-        <hr>
-
-        <!-- Aboutページ -->
-        <h2>About Private Gallery</h2>
-        <p>ここにはコンテンツの概要を記載。<br>
-        それからAboutページへのリンクを設置予定。
-        </p>
-        <v-btn text to="./AboutPage"> Aboutページへ</v-btn>
-
 
         <!-- <v-row>
           <v-col cols="3">
@@ -42,7 +31,7 @@
             >
           </v-col>
         </v-row> -->
-      </v-container>
+      <!-- </v-container> -->
     </v-main>
 
     <v-footer>
@@ -53,9 +42,18 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
 
 export default {
   name: "IndexPage",
+
+  filters: {
+    dayFormat: (value) => {
+      if (!value) return "";
+      value = dayjs(value).format("YYYY-MM-DD");
+      return value;
+    },
+  },
 
   computed: {
     isLoggedIn() {
@@ -93,7 +91,6 @@ export default {
   color: white;
   top: 50%;
   left: 50%;
-  letter-spacing: 1px;
   transform: translate(-50%, -50%);
 }
 </style>

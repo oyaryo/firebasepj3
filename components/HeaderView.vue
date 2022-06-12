@@ -1,14 +1,14 @@
 <template>
   <div class="flex justify-between items-center">
-    <h1 class="text-2xl font-extrabold text-gray-600">Private Gallery</h1>
+    <h1 class="text-lg md:text-2xl font-extrabold text-gray-600">Private Gallery</h1>
     <nav class="">
       <ul class="flex justify-end items-center">
-        <li class="gnav--item">ホーム</li>
-        <li class="gnav--item">概要</li>
-        <li class="gnav--item">ギャラリー</li>
-        <li class="gnav--item">ショップ</li>
-        <li class="gnav--item">問い合わせ</li>
-        <li class="gnav--item" @click="logout">ログアウト</li>
+        <li class="gnav--item"><a href="/">ホーム</a></li>
+        <li class="gnav--item"><a href="../AboutPage">概要</a></li>
+        <li class="gnav--item"><a href="../NewsPage">お知らせ</a></li>
+        <li class="gnav--item"><a href="../GalleryPage">ギャラリー</a></li>
+        <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
+        <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
         <li>
           <v-avatar color="indigo">
             <v-icon dark v-if="!photoUrl" @click="toMypage">

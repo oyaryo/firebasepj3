@@ -5,7 +5,10 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _6cc2b5cf = () => interopDefault(import('../pages/AboutPage.vue' /* webpackChunkName: "pages/AboutPage" */))
+const _459101d4 = () => interopDefault(import('../pages/GalleryPage.vue' /* webpackChunkName: "pages/GalleryPage" */))
 const _186e8f98 = () => interopDefault(import('../pages/mypage.vue' /* webpackChunkName: "pages/mypage" */))
+const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpackChunkName: "pages/NewsPage" */))
+const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
 const _37a4aee1 = () => interopDefault(import('../pages/vuextest.vue' /* webpackChunkName: "pages/vuextest" */))
 const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
 const _362afcdd = () => interopDefault(import('../pages/auth/register.vue' /* webpackChunkName: "pages/auth/register" */))
@@ -31,9 +34,21 @@ export const routerOptions = {
     component: _6cc2b5cf,
     name: "AboutPage"
   }, {
+    path: "/GalleryPage",
+    component: _459101d4,
+    name: "GalleryPage"
+  }, {
     path: "/mypage",
     component: _186e8f98,
     name: "mypage"
+  }, {
+    path: "/NewsPage",
+    component: _78dab0bf,
+    name: "NewsPage"
+  }, {
+    path: "/ShopPage",
+    component: _022fa43c,
+    name: "ShopPage"
   }, {
     path: "/vuextest",
     component: _37a4aee1,

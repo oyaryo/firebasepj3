@@ -5,7 +5,7 @@
     </v-app-bar>
 
     <v-main>
-      <h2>Aboutページ</h2>
+      <h2>ギャラリーページ</h2>
     </v-main>
 
     <v-footer>

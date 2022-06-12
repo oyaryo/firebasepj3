@@ -7,11 +7,32 @@
     "_name": "_6cc2b5cf"
   },
   {
+    "name": "GalleryPage",
+    "path": "/GalleryPage",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/GalleryPage.vue",
+    "chunkName": "pages/GalleryPage",
+    "_name": "_459101d4"
+  },
+  {
     "name": "mypage",
     "path": "/mypage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/mypage.vue",
     "chunkName": "pages/mypage",
     "_name": "_186e8f98"
+  },
+  {
+    "name": "NewsPage",
+    "path": "/NewsPage",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/NewsPage.vue",
+    "chunkName": "pages/NewsPage",
+    "_name": "_78dab0bf"
+  },
+  {
+    "name": "ShopPage",
+    "path": "/ShopPage",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/ShopPage.vue",
+    "chunkName": "pages/ShopPage",
+    "_name": "_022fa43c"
   },
   {
     "name": "vuextest",
