@@ -5,33 +5,22 @@
     </v-app-bar>
 
     <v-main>
-      <!-- <v-container fluid> -->
-        <div class="key-visual">
-          <img src="@/assets/recruit.png" alt="" />
-          <h1 class="title-text font-extrabold text-3xl md:text-5xl tracking-wide">Private Gallery</h1>
-        </div>
-        <h2>What's New</h2>
-        <ul class="border border-gray-400">
-          <li v-for="content in contents" :key="content.id">
-            <nuxt-link :to="`/${content.id}`">
-              {{ content.title }}({{ content.publishedAt | dayFormat }})
-            </nuxt-link>
-          </li>
-        </ul>
-
-        <!-- <v-row>
-          <v-col cols="3">
-            <v-btn color="primary" to="/firebasetest/showData"
-              >データを見る</v-btn
-            >
-          </v-col>
-          <v-col cols="3">
-            <v-btn color="secondary" to="/firebasetest/addData"
-              >データを入力</v-btn
-            >
-          </v-col>
-        </v-row> -->
-      <!-- </v-container> -->
+      <div class="key-visual">
+        <img src="@/assets/recruit.png" alt="" />
+        <h1
+          class="title-text font-extrabold text-3xl md:text-5xl tracking-wide"
+        >
+          Private Gallery
+        </h1>
+      </div>
+      <ul class="news">
+        <li class="text-center font-bold p-2">What's New</li>
+        <li v-for="content in contents" :key="content.id">
+          <nuxt-link :to="`/${content.id}`">
+            {{ content.title }}({{ content.publishedAt | dayFormat }})
+          </nuxt-link>
+        </li>
+      </ul>
     </v-main>
 
     <v-footer>
@@ -92,5 +81,11 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.news {
+  width: 80%;
+  border: 1px solid gray;
+  margin: 20px auto;
 }
 </style>

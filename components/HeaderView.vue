@@ -1,8 +1,6 @@
 <template>
   <div class="flex justify-between items-center">
-    <h1 class="text-lg md:text-2xl font-extrabold text-gray-600">
-      Private Gallery
-    </h1>
+    <h1 class="text-2xl font-extrabold text-gray-600">Private Gallery</h1>
     <nav class="hidden md:inline-block">
       <ul class="flex justify-end items-center">
         <li class="gnav--item"><a href="/">ホーム</a></li>
@@ -11,47 +9,90 @@
         <li class="gnav--item"><a href="../GalleryPage">ギャラリー</a></li>
         <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
         <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
-        
-      </ul>
-      
-    </nav>
-    <div>
-          <v-avatar color="indigo">
-            <!-- <v-icon dark v-if="!photoUrl" @click="toMypage"> -->
-            <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
-              mdi-account-circle
-            </v-icon>
-            <!-- <img
-              :src="photoUrl"
-              alt="photoImage"
-              v-if="photoUrl"
-              @click="toMypage"
-            /> -->
-            <img
-              :src="photoUrl"
-              alt="photoImage"
-              v-if="photoUrl"
-              @click="openDrawerMenu"
-            />
-          </v-avatar>
-        </div>
-      <transition name="right">
-        <div v-if="drawerFlg" class="drawer-menu-wrapper">
-          <div class="drawer-menu">
-            <ul>
-              <li class="gnav--item"><a href="/">ホーム</a></li>
-              <li class="gnav--item"><a href="../AboutPage">概要</a></li>
-              <li class="gnav--item"><a href="../NewsPage">お知らせ</a></li>
-              <li class="gnav--item">
-                <a href="../GalleryPage">ギャラリー</a>
-              </li>
-              <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
-              <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
-              <li></li>
-            </ul>
+        <li>
+          <div>
+            <v-avatar color="indigo">
+              <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
+                mdi-account-circle
+              </v-icon>
+              <img
+                :src="photoUrl"
+                alt="photoImage"
+                v-if="photoUrl"
+                @click="toMypage"
+              />
+            </v-avatar>
           </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="md:hidden">
+      <v-avatar color="indigo">
+        <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
+          mdi-account-circle
+        </v-icon>
+        <img
+          :src="photoUrl"
+          alt="photoImage"
+          v-if="photoUrl"
+          @click="openDrawerMenu"
+        />
+      </v-avatar>
+    </div>
+    <transition name="right">
+      <div v-if="drawerFlg" class="drawer-menu-wrapper">
+        <div class="drawer-menu">
+          <ul>
+            <li class="gnav--item border-b">
+              <a href="/" class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >ホーム</a
+              >
+            </li>
+            <li class="gnav--item border-b">
+              <a
+                href="../AboutPage"
+                class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >概要</a
+              >
+            </li>
+            <li class="gnav--item border-b">
+              <a
+                href="../NewsPage"
+                class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >お知らせ</a
+              >
+            </li>
+            <li class="gnav--item border-b">
+              <a
+                href="../GalleryPage"
+                class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >ギャラリー</a
+              >
+            </li>
+            <li class="gnav--item border-b">
+              <a
+                href="../ShopPage"
+                class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >ショップ</a
+              >
+            </li>
+            <li
+              class="gnav--item border-b block px-8 py-2 hover:bg-gray-300 rounded"
+              @click="toMypage"
+            >
+              <a>マイページ</a>
+            </li>
+            <li
+              class="gnav--item block px-8 py-2 hover:bg-gray-300 rounded"
+              @click="logout"
+            >
+              <a>ログアウト</a>
+            </li>
+            <li></li>
+          </ul>
         </div>
-      </transition>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -95,45 +136,9 @@ export default {
 </script>
 
 <style>
-/*親階層*/
-.gnav {
-  display: flex;
-  height: 3rem;
-  margin-left: auto;
-}
-.gnav li {
-  list-style: none;
-  position: relative;
-  text-align: right;
-}
-.gnav li a {
-  background: #001b34;
-  border-right: 1px solid #eee;
-  color: #fff;
-  display: block;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  text-decoration: none;
-  width: 100%;
-  padding: 2px 5px;
-}
-
-/*子階層以降共通*/
-.gnav li li {
-  height: 0;
-  overflow: hidden;
-  transition: 0.5s;
-}
-.gnav li li a {
-  border-top: 1px solid #eee;
-}
-.gnav li:hover > ul > li {
-  height: 2rem;
-  overflow: visible;
-}
 .gnav--item:not(:last-child) {
-  margin-right: 30px;
+  margin-right: 20px;
+  text-align: right;
 }
 
 .right-enter-active,
@@ -149,13 +154,13 @@ export default {
 .drawer-menu-wrapper {
   position: absolute;
   z-index: 10;
-  top: 60px;
+  top: 55px;
   right: 0;
   /* left: 0 //左に出す場合 */
   width: 50%;
   /* height: 100%; */
-  height: 300px;
-  background-color: white;
+  height: 320px;
+  background-color: #f5f5f5;
 }
 .drawer-menu {
   padding: 24px;
