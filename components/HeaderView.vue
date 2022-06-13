@@ -1,7 +1,9 @@
 <template>
   <div class="flex justify-between items-center">
-    <h1 class="text-lg md:text-2xl font-extrabold text-gray-600">Private Gallery</h1>
-    <nav class="">
+    <h1 class="text-lg md:text-2xl font-extrabold text-gray-600">
+      Private Gallery
+    </h1>
+    <nav class="hidden md:inline-block">
       <ul class="flex justify-end items-center">
         <li class="gnav--item"><a href="/">ホーム</a></li>
         <li class="gnav--item"><a href="../AboutPage">概要</a></li>
@@ -9,21 +11,47 @@
         <li class="gnav--item"><a href="../GalleryPage">ギャラリー</a></li>
         <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
         <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
-        <li>
+        
+      </ul>
+      
+    </nav>
+    <div>
           <v-avatar color="indigo">
-            <v-icon dark v-if="!photoUrl" @click="toMypage">
+            <!-- <v-icon dark v-if="!photoUrl" @click="toMypage"> -->
+            <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
               mdi-account-circle
             </v-icon>
-            <img
+            <!-- <img
               :src="photoUrl"
               alt="photoImage"
               v-if="photoUrl"
               @click="toMypage"
+            /> -->
+            <img
+              :src="photoUrl"
+              alt="photoImage"
+              v-if="photoUrl"
+              @click="openDrawerMenu"
             />
           </v-avatar>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      <transition name="right">
+        <div v-if="drawerFlg" class="drawer-menu-wrapper">
+          <div class="drawer-menu">
+            <ul>
+              <li class="gnav--item"><a href="/">ホーム</a></li>
+              <li class="gnav--item"><a href="../AboutPage">概要</a></li>
+              <li class="gnav--item"><a href="../NewsPage">お知らせ</a></li>
+              <li class="gnav--item">
+                <a href="../GalleryPage">ギャラリー</a>
+              </li>
+              <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
+              <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </transition>
   </div>
 </template>
 
@@ -43,6 +71,7 @@ export default {
   data() {
     return {
       photoUrl: "",
+      drawerFlg: false,
     };
   },
   computed: {
@@ -53,6 +82,10 @@ export default {
   methods: {
     toMypage() {
       this.$router.push("/mypage");
+    },
+    openDrawerMenu() {
+      console.log("openDrawerMenu call");
+      this.drawerFlg = !this.drawerFlg;
     },
     logout() {
       this.$store.dispatch("auth/logout");
@@ -101,5 +134,30 @@ export default {
 }
 .gnav--item:not(:last-child) {
   margin-right: 30px;
+}
+
+.right-enter-active,
+.right-leave-active {
+  transform: translate(0px, 0px);
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.right-enter,
+.right-leave-to {
+  transform: translateX(100vw) translateX(0px);
+}
+
+.drawer-menu-wrapper {
+  position: absolute;
+  z-index: 10;
+  top: 60px;
+  right: 0;
+  /* left: 0 //左に出す場合 */
+  width: 50%;
+  /* height: 100%; */
+  height: 300px;
+  background-color: white;
+}
+.drawer-menu {
+  padding: 24px;
 }
 </style>
