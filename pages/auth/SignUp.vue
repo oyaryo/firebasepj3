@@ -3,8 +3,8 @@
     <v-app-bar app></v-app-bar>
     <v-main>
       <v-container fluid>
-        <div class="register--box">
-          <v-card class="register--card">
+        <div class="register--box w-10/12 md:w-8/12">
+          <v-card class="p-8">
             <v-card-title class="justify-center">ユーザー登録</v-card-title>
             <v-card-subtitle class="text-center"
               >ユーザー情報を入力してください。</v-card-subtitle
@@ -110,11 +110,10 @@ export default {
 
 <style>
 .register--box {
-  width: 50%;
   margin: 0 auto;
 }
 
-.register--card {
+/* .register--card {
   padding: 20px;
-}
+} */
 </style>

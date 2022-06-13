@@ -11,7 +11,6 @@ const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpack
 const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
 const _37a4aee1 = () => interopDefault(import('../pages/vuextest.vue' /* webpackChunkName: "pages/vuextest" */))
 const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
-const _362afcdd = () => interopDefault(import('../pages/auth/register.vue' /* webpackChunkName: "pages/auth/register" */))
 const _05e5a592 = () => interopDefault(import('../pages/auth/SignUp.vue' /* webpackChunkName: "pages/auth/SignUp" */))
 const _eec5c2dc = () => interopDefault(import('../pages/firebasetest/addData.vue' /* webpackChunkName: "pages/firebasetest/addData" */))
 const _393aa8a0 = () => interopDefault(import('../pages/firebasetest/showData.vue' /* webpackChunkName: "pages/firebasetest/showData" */))
@@ -57,10 +56,6 @@ export const routerOptions = {
     path: "/auth/login",
     component: _6bc8f8c2,
     name: "auth-login"
-  }, {
-    path: "/auth/register",
-    component: _362afcdd,
-    name: "auth-register"
   }, {
     path: "/auth/SignUp",
     component: _05e5a592,

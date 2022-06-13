@@ -14,7 +14,7 @@
         </h1>
       </div>
       <ul class="news">
-        <li class="text-center font-bold p-2">What's New</li>
+        <li class="text-center font-bold py-2 -ml-6">What's New</li>
         <li v-for="content in contents" :key="content.id">
           <nuxt-link :to="`/${content.id}`">
             {{ content.title }}({{ content.publishedAt | dayFormat }})
@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style>
+.news--item {
+  list-style-type: none;
+}
 .key-visual {
   position: relative;
 }

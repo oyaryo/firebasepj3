@@ -49,13 +49,6 @@
     "_name": "_6bc8f8c2"
   },
   {
-    "name": "auth-register",
-    "path": "/auth/register",
-    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/auth/register.vue",
-    "chunkName": "pages/auth/register",
-    "_name": "_362afcdd"
-  },
-  {
     "name": "auth-SignUp",
     "path": "/auth/SignUp",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/auth/SignUp.vue",
