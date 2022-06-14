@@ -1,87 +1,68 @@
 <template>
-  <v-app>
-    <v-app-bar app><HeaderView /></v-app-bar>
-    <v-main>
-      <v-container fluid>
-        <h2>マイページ</h2>
-        <table>
-          <tr>
-            <th>画像：</th>
-            <td>
-              <input
-                type="file"
-                ref="fileInput"
-                accept="image/jpeg, image/jpg, image/png"
-                style="display: none"
-                @change="updateIcon"
-              />
-              <v-avatar color="indigo">
-                <v-icon dark v-if="!photoUrl" @click="changeIcon">
-                  mdi-account-circle
-                </v-icon>
-                <img
-                  :src="photoUrl"
-                  alt="photoImage"
-                  v-if="photoUrl"
-                  @click="changeIcon"
-                />
-              </v-avatar>
-              <br />
-            </td>
-          </tr>
-          <tr>
-            <th>お名前：</th>
-            <td>
-              <input
-                type="text"
-                v-model="displayName"
-                :placeholder="displayName"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>メールアドレス：</th>
-            <td>
-              <input type="email" v-model="email" :placeholder="email" />
-            </td>
-          </tr>
-          <tr>
-            <th>パスワード：</th>
-            <td>
-              <v-btn text @click="sendResetPassword"
-                >（パスワードを変更する）</v-btn
-              >
-            </td>
-          </tr>
-          <tr>
-            <th>登録日：</th>
-            <td>{{ createdAt }}</td>
-          </tr>
-          <tr>
-            <th>更新日：</th>
-            <td>{{ updatedAt }}</td>
-          </tr>
-        </table>
-        <v-row>
-          <v-col cols="3">
-            <v-btn color="primary" @click="update">更新</v-btn>
-          </v-col>
-          <v-col cols="3">
-            <v-btn color="secondary" to="/">トップページへ</v-btn>
-          </v-col>
-          <!-- <v-col cols="3">
-            <v-btn color="error" @click="updatedAtServerTimestamp">テスト</v-btn>
-          </v-col> -->
-        </v-row>
-      </v-container>
-    </v-main>
-    <v-footer><FooterView /></v-footer>
-  </v-app>
+  <div>
+    <table>
+      <tr>
+        <th>画像：</th>
+        <td>
+          <input
+            type="file"
+            ref="fileInput"
+            accept="image/jpeg, image/jpg, image/png"
+            style="display: none"
+            @change="updateIcon"
+          />
+          <v-avatar color="indigo">
+            <v-icon dark v-if="!photoUrl" @click="changeIcon">
+              mdi-account-circle
+            </v-icon>
+            <img
+              :src="photoUrl"
+              alt="photoImage"
+              v-if="photoUrl"
+              @click="changeIcon"
+            />
+          </v-avatar>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <th>お名前：</th>
+        <td>
+          <input type="text" v-model="displayName" :placeholder="displayName" />
+        </td>
+      </tr>
+      <tr>
+        <th>メールアドレス：</th>
+        <td>
+          <input type="email" v-model="email" :placeholder="email" />
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード：</th>
+        <td>
+          <v-btn text @click="sendResetPassword"
+            >（パスワードを変更する）</v-btn
+          >
+        </td>
+      </tr>
+      <tr>
+        <th>登録日：</th>
+        <td>{{ createdAt | dayFormat }}</td>
+      </tr>
+      <tr>
+        <th>更新日：</th>
+        <td>{{ updatedAt | dayFormat }}</td>
+      </tr>
+    </table>
+    <v-row>
+      <v-col>
+        <v-btn color="primary" @click="update">更新</v-btn>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-// import firebaseApp from "@/plugins/firebase";
-
 import {
   getAuth,
   onAuthStateChanged,
@@ -97,8 +78,11 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import MyMixin from "@/mixins/my-mixin";
 
 export default {
+  mixins: [MyMixin],
+
   data() {
     return {
       userUid: "",
@@ -201,57 +185,6 @@ export default {
       }
     },
 
-    // changeImg(e) {
-    //   const storage = getStorage(this.$firebase);
-
-    //   const metadata = {
-    //     contentType: "image/jpeg",
-    //   };
-
-    //   this.thumbnail = e.target.files[0];
-    //   const storageRef = ref(storage, "images/" + this.thumbnail.name);
-
-    //   const uploadTask = uploadBytesResumable(
-    //     storageRef,
-    //     this.thumbnail,
-    //     metadata
-    //   ).then((snapshot) => {
-    //     console.log("Uploaded a blob or file!");
-    //   });
-
-    //   uploadTask.on(
-    //     "state_changed",
-    //     (snapshot) => {
-    //       const progress =
-    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //       console.log("Upload is " + progress + "% done");
-    //       switch (snapshot.state) {
-    //         case "paused":
-    //           console.log("Upload is paused.");
-    //           break;
-    //         case "running":
-    //           console.log("Upload is running.");
-    //           break;
-    //       }
-    //     },
-    //     (error) => {
-    //       switch (error.code) {
-    //         case "storage/unauthorized":
-    //           break;
-    //         case "storage/canceled":
-    //           break;
-    //         case "storage/unknown":
-    //           break;
-    //       }
-    //     },
-    //     () => {
-    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //         console.log("File available at", downloadURL);
-    //       });
-    //     }
-    //   );
-    // },
-
     downloadImage() {
       const storage = getStorage(this.$firebase);
       const imagesRef = ref(storage, "images");
@@ -296,7 +229,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 table {
   margin-top: 20px;
   margin-bottom: 20px;

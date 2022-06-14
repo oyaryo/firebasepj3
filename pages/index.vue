@@ -1,10 +1,5 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <HeaderView />
-    </v-app-bar>
-
-    <v-main>
+    <div>
       <div class="key-visual">
         <img src="@/assets/recruit.png" alt="" />
         <h1
@@ -21,27 +16,24 @@
           </nuxt-link>
         </li>
       </ul>
-    </v-main>
-
-    <v-footer>
-      <FooterView />
-    </v-footer>
-  </v-app>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
-import dayjs from "dayjs";
+import MyMixin from '@/mixins/my-mixin';
 
 export default {
   name: "IndexPage",
 
-  filters: {
-    dayFormat: (value) => {
-      if (!value) return "";
-      return dayjs(value).format("YYYY-MM-DD");
-    },
-  },
+  mixins: [MyMixin],
+
+  // filters: {
+  //   dayFormat: (value) => {
+  //     if (!value) return "";
+  //     return dayjs(value).format("YYYY-MM-DD");
+  //   },
+  // },
 
   computed: {
     isLoggedIn() {
