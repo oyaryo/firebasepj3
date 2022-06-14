@@ -39,8 +39,7 @@ export default {
   filters: {
     dayFormat: (value) => {
       if (!value) return "";
-      value = dayjs(value).format("YYYY-MM-DD");
-      return value;
+      return dayjs(value).format("YYYY-MM-DD");
     },
   },
 
