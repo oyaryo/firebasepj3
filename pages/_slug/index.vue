@@ -1,33 +1,18 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <HeaderView />
-    </v-app-bar>
-
-    <v-main class="main">
-      <h1 class="title">{{ data.title }}</h1>
-      <p class="publishedAt">{{ data.publishedAt | dayFormat }}</p>
-      <div class="post" v-html="data.content"></div>
-    </v-main>
-
-    <v-footer>
-      <FooterView />
-    </v-footer>
-  </v-app>
+  <div>
+    <h1 class="title">{{ data.title }}</h1>
+    <p class="publishedAt">{{ data.publishedAt | dayFormat }}</p>
+    <div class="post" v-html="data.content"></div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-import dayjs from "dayjs";
+import MyMixin from '@/mixins/my-mixin';
 
 export default {
-  filters: {
-    dayFormat: (value) => {
-      if (!value) return "";
-      value = dayjs(value).format("YYYY-MM-DD");
-      return value;
-    },
-  },
+
+  mixins: [MyMixin],
 
   async asyncData({ params }) {
     const data = await axios.get(

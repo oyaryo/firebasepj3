@@ -3,11 +3,11 @@
     <h1 class="text-2xl font-extrabold text-gray-600">Private Gallery</h1>
     <nav class="hidden md:inline-block">
       <ul class="flex justify-end items-center">
-        <li class="gnav--item"><a href="/">ホーム</a></li>
-        <li class="gnav--item"><a href="../AboutPage">概要</a></li>
-        <li class="gnav--item"><a href="../NewsPage">お知らせ</a></li>
-        <li class="gnav--item"><a href="../GalleryPage">ギャラリー</a></li>
-        <li class="gnav--item"><a href="../ShopPage">ショップ</a></li>
+        <li class="gnav--item"><nuxt-link to="/">ホーム</nuxt-link></li>
+        <li class="gnav--item"><nuxt-link to="AboutPage">概要</nuxt-link></li>
+        <li class="gnav--item"><nuxt-link to="NewsPage">お知らせ</nuxt-link></li>
+        <li class="gnav--item"><nuxt-link to="GalleryPage">ギャラリー</nuxt-link></li>
+        <li class="gnav--item"><nuxt-link to="ShopPage">ショップ</nuxt-link></li>
         <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
         <li>
           <div>
@@ -44,36 +44,32 @@
         <div class="drawer-menu">
           <ul>
             <li class="gnav--item border-b">
-              <a href="/" class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ホーム</a
+              <nuxt-link to="/" class="block px-8 py-2 hover:bg-gray-300 rounded"
+                >ホーム</nuxt-link
               >
             </li>
             <li class="gnav--item border-b">
-              <a
-                href="../AboutPage"
+              <nuxt-link to="AboutPage"
                 class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >概要</a
+                >概要</nuxt-link
               >
             </li>
             <li class="gnav--item border-b">
-              <a
-                href="../NewsPage"
+              <nuxt-link to="../NewsPage"
                 class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >お知らせ</a
+                >お知らせ</nuxt-link
               >
             </li>
             <li class="gnav--item border-b">
-              <a
-                href="../GalleryPage"
+              <nuxt-link to="GalleryPage"
                 class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ギャラリー</a
+                >ギャラリー</nuxt-link
               >
             </li>
             <li class="gnav--item border-b">
-              <a
-                href="../ShopPage"
+              <nuxt-link to="ShopPage"
                 class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ショップ</a
+                >ショップ</nuxt-link
               >
             </li>
             <li
@@ -125,7 +121,6 @@ export default {
       this.$router.push("/mypage");
     },
     openDrawerMenu() {
-      console.log("openDrawerMenu call");
       this.drawerFlg = !this.drawerFlg;
     },
     logout() {
@@ -135,7 +130,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gnav--item:not(:last-child) {
   margin-right: 20px;
   text-align: right;

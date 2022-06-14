@@ -28,13 +28,6 @@ export default {
 
   mixins: [MyMixin],
 
-  // filters: {
-  //   dayFormat: (value) => {
-  //     if (!value) return "";
-  //     return dayjs(value).format("YYYY-MM-DD");
-  //   },
-  // },
-
   computed: {
     isLoggedIn() {
       return this.$store.getters["auth/getLoggedIn"];
@@ -55,7 +48,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .news--item {
   list-style-type: none;
 }

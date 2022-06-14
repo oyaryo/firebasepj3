@@ -108,12 +108,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .register--box {
   margin: 0 auto;
 }
-
-/* .register--card {
-  padding: 20px;
-} */
 </style>

@@ -74,12 +74,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .login--box {
   margin: 0 auto;
 }
-
-/* .login--card {
-  padding: 30px;
-} */
 </style>
