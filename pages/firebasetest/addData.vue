@@ -83,9 +83,8 @@ export default {
           thumbnailUrl: this.thumbnailUrl,
           createdAt: serverTimestamp(),
         });
-        // console.log("追加したデータのID：　", docRef.id);
-        // console.log("追加したデータ：　", this.keyword)
-        // this.$router.push("./showData");
+        // 商品登録後、商品一覧画面に遷移
+        this.$router.push("./showData");
       } catch (e) {
         console.error("error: ", e);
       }
