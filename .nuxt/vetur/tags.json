@@ -4,14 +4,5 @@
   },
   "HeaderView": {
     "description": "Auto imported from components/HeaderView.vue"
-  },
-  "NuxtLogo": {
-    "description": "Auto imported from components/NuxtLogo.vue"
-  },
-  "ProductBox": {
-    "description": "Auto imported from components/ProductBox.vue"
-  },
-  "Tutorial": {
-    "description": "Auto imported from components/Tutorial.vue"
   }
 }
