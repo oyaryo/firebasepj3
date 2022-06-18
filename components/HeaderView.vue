@@ -4,9 +4,9 @@
     <nav class="hidden md:inline-block">
       <ul class="flex justify-end items-center">
         <li class="gnav--item"><nuxt-link to="/">ホーム</nuxt-link></li>
-        <li class="gnav--item"><nuxt-link to="AboutPage">概要</nuxt-link></li>
-        <li class="gnav--item"><nuxt-link to="NewsPage">お知らせ</nuxt-link></li>
-        <li class="gnav--item"><nuxt-link to="GalleryPage">ギャラリー</nuxt-link></li>
+        <li class="gnav--item"><NuxtLink to="AboutPage">概要</NuxtLink></li>
+        <li class="gnav--item"><n-link to="NewsPage">お知らせ</n-link></li>
+        <li class="gnav--item"><NLink to="GalleryPage">ギャラリー</NLink></li>
         <li class="gnav--item"><nuxt-link to="ShopPage">ショップ</nuxt-link></li>
         <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
         <li>

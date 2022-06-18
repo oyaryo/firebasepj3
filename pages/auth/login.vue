@@ -32,6 +32,8 @@
 
 <script>
 export default {
+  layout: 'before',
+  
   data() {
     return {
       email: "",

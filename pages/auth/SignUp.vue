@@ -46,6 +46,10 @@ import {
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export default {
+  layout() {
+    return "before";
+  },
+
   data() {
     return {
       displayName: "",

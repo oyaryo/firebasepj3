@@ -116,6 +116,11 @@ export default {
       });
     } catch (e) {
       console.log("error: ", e);
+      this.$nuxt.error({
+        statusCode: 404,
+        message: e,
+        path: this.$route.fullPath,
+      });
     }
   },
 

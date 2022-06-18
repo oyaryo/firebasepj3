@@ -4,5 +4,8 @@
   },
   "HeaderView": {
     "description": "Auto imported from components/HeaderView.vue"
+  },
+  "FooBar": {
+    "description": "Auto imported from components/foo/bar.vue"
   }
 }
