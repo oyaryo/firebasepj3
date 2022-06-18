@@ -3,72 +3,84 @@
     "name": "AboutPage",
     "path": "/AboutPage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/AboutPage.vue",
-    "chunkName": "pages/AboutPage"
+    "chunkName": "pages/AboutPage",
+    "_name": "_6cc2b5cf"
   },
   {
     "name": "GalleryPage",
     "path": "/GalleryPage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/GalleryPage.vue",
-    "chunkName": "pages/GalleryPage"
+    "chunkName": "pages/GalleryPage",
+    "_name": "_459101d4"
   },
   {
     "name": "mypage",
     "path": "/mypage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/mypage.vue",
-    "chunkName": "pages/mypage"
+    "chunkName": "pages/mypage",
+    "_name": "_186e8f98"
   },
   {
     "name": "NewsPage",
     "path": "/NewsPage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/NewsPage.vue",
-    "chunkName": "pages/NewsPage"
+    "chunkName": "pages/NewsPage",
+    "_name": "_78dab0bf"
   },
   {
     "name": "ShopPage",
     "path": "/ShopPage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/ShopPage.vue",
-    "chunkName": "pages/ShopPage"
+    "chunkName": "pages/ShopPage",
+    "_name": "_022fa43c"
   },
   {
     "name": "vuextest",
     "path": "/vuextest",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/vuextest.vue",
-    "chunkName": "pages/vuextest"
+    "chunkName": "pages/vuextest",
+    "_name": "_37a4aee1"
   },
   {
     "name": "auth-login",
     "path": "/auth/login",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/auth/login.vue",
-    "chunkName": "pages/auth/login"
+    "chunkName": "pages/auth/login",
+    "_name": "_6bc8f8c2"
   },
   {
     "name": "auth-SignUp",
     "path": "/auth/SignUp",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/auth/SignUp.vue",
-    "chunkName": "pages/auth/SignUp"
+    "chunkName": "pages/auth/SignUp",
+    "_name": "_05e5a592"
   },
   {
     "name": "firebasetest-addData",
     "path": "/firebasetest/addData",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/firebasetest/addData.vue",
-    "chunkName": "pages/firebasetest/addData"
+    "chunkName": "pages/firebasetest/addData",
+    "_name": "_eec5c2dc"
   },
   {
     "name": "firebasetest-showData",
     "path": "/firebasetest/showData",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/firebasetest/showData.vue",
-    "chunkName": "pages/firebasetest/showData"
+    "chunkName": "pages/firebasetest/showData",
+    "_name": "_393aa8a0"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_f84a64f6"
   },
   {
     "name": "slug",
     "path": "/:slug",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/_slug/index.vue",
-    "chunkName": "pages/_slug/index"
+    "chunkName": "pages/_slug/index",
+    "_name": "_d0085e00"
   }
 ]

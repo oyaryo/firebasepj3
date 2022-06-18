@@ -16,7 +16,6 @@
           </nuxt-link>
         </li>
       </ul>
-      <FooBar message="メッセージ"/>
     </div>
 </template>
 
