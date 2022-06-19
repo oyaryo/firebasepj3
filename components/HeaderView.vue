@@ -3,11 +3,11 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-2xl font-extrabold text-gray-600"
-        >Private Gallery</v-toolbar-title
+        >Meta Gallery</v-toolbar-title
       >
       <div class="flex justify-end items-center">
         <v-avatar color="indigo">
-          <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
+          <v-icon dark v-if="!photoUrl" @click="toMypage">
             mdi-account-circle
           </v-icon>
           <img
