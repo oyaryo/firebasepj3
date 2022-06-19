@@ -15,7 +15,7 @@
 
     <v-container>
       <div class="flex justify-center">
-        <div class="mt-8 w-10/12 border border-gray-400 bg-gray-200">
+        <div class="mt-8 w-10/12 border border-dotted border-gray-400 bg-gray-50">
           <div class="text-center font-bold">What's New</div>
           <div v-for="content in contents" :key="content.id" class="m-2">
             <nuxt-link :to="`/${content.id}`">
@@ -164,31 +164,11 @@ export default {
 </script>
 
 <style scoped>
-.news--item {
-  list-style-type: none;
+a:link {
+  color: #1f2937;
 }
-.key-visual {
-  position: relative;
-}
-
-.key-visual img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.title-text {
-  position: absolute;
-  color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.news {
-  width: 80%;
-  border: 1px solid gray;
-  margin: 20px auto;
+a:visited {
+  color: #64748b
 }
 
 .dotted-border-bottom {

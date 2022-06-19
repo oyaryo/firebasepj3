@@ -13,8 +13,8 @@
         <div class="flex" v-for="content in contents" :key="content.id">
           <div class="w-4/12"></div>
           <div class="w-8/12 p-4 bg-gray-100 news-border">
-            <p class="font-sans text-sm">DATE {{ content.publishedAt | dayFormat }}</p>
-            <p><nuxt-link :to="`/${content.id}`">{{ content.title }}</nuxt-link></p>
+            <p class="font-sans text-xs">DATE {{ content.publishedAt | dayFormat }}</p>
+            <p class=""><nuxt-link :to="`/${content.id}`">{{ content.title }}</nuxt-link></p>
             <p class="font-serif truncate">
               {{ content.overview }}
             </p>
@@ -47,6 +47,13 @@ export default {
 </script>
 
 <style scoped>
+a:link {
+  color: #1f2937;
+}
+a:visited {
+  color: #64748b
+}
+
 .news-border {
   border: 1px dotted #cbd5e0;
   border-top: none;

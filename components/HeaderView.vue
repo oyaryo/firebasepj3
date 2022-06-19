@@ -1,99 +1,42 @@
 <template>
-  <div class="flex justify-between items-center">
-    <h1 class="text-2xl font-extrabold text-gray-600">Private Gallery</h1>
-    <nav class="hidden md:inline-block">
-      <ul class="flex justify-end items-center">
-        <li class="gnav--item"><nuxt-link to="/">ホーム</nuxt-link></li>
-        <!-- <li class="gnav--item"><NuxtLink to="AboutPage">概要</NuxtLink></li> -->
-        <li class="gnav--item"><n-link to="NewsPage">お知らせ</n-link></li>
-        <li class="gnav--item"><NLink to="GalleryPage">ギャラリー</NLink></li>
-        <li class="gnav--item"><nuxt-link to="ShopPage">ショップ</nuxt-link></li>
-        <li class="gnav--item" @click="logout"><a>ログアウト</a></li>
-        <li>
-          <div>
-            <v-avatar color="indigo">
-              <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
-                mdi-account-circle
-              </v-icon>
-              <img
-                :src="photoUrl"
-                alt="photoImage"
-                v-if="photoUrl"
-                @click="toMypage"
-              />
-            </v-avatar>
-          </div>
-        </li>
-      </ul>
-    </nav>
-    <div class="md:hidden">
-      <v-avatar color="indigo">
-        <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
-          mdi-account-circle
-        </v-icon>
-        <img
-          :src="photoUrl"
-          alt="photoImage"
-          v-if="photoUrl"
-          @click="openDrawerMenu"
-        />
-      </v-avatar>
-    </div>
-    <transition name="right">
-      <div v-if="drawerFlg" class="drawer-menu-wrapper">
-        <div class="drawer-menu">
-          <ul>
-            <li class="gnav--item border-b">
-              <nuxt-link to="/" class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ホーム</nuxt-link
-              >
-            </li>
-            <!-- <li class="gnav--item border-b">
-              <nuxt-link to="AboutPage"
-                class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >概要</nuxt-link
-              > -->
-            </li>
-            <li class="gnav--item border-b">
-              <nuxt-link to="../NewsPage"
-                class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >お知らせ</nuxt-link
-              >
-            </li>
-            <li class="gnav--item border-b">
-              <nuxt-link to="GalleryPage"
-                class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ギャラリー</nuxt-link
-              >
-            </li>
-            <li class="gnav--item border-b">
-              <nuxt-link to="ShopPage"
-                class="block px-8 py-2 hover:bg-gray-300 rounded"
-                >ショップ</nuxt-link
-              >
-            </li>
-            <li
-              class="gnav--item border-b block px-8 py-2 hover:bg-gray-300 rounded"
-              @click="toMypage"
-            >
-              <a>マイページ</a>
-            </li>
-            <li
-              class="gnav--item block px-8 py-2 hover:bg-gray-300 rounded"
-              @click="logout"
-            >
-              <a>ログアウト</a>
-            </li>
-            <li></li>
-          </ul>
-        </div>
+  <div>
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-toolbar-title class="text-2xl font-extrabold text-gray-600"
+        >Private Gallery</v-toolbar-title
+      >
+      <div class="flex justify-end items-center">
+        <v-avatar color="indigo">
+          <v-icon dark v-if="!photoUrl" @click="openDrawerMenu">
+            mdi-account-circle
+          </v-icon>
+          <img
+            :src="photoUrl"
+            alt="photoImage"
+            v-if="photoUrl"
+            @click="toMypage"
+          />
+        </v-avatar>
       </div>
-    </transition>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" fixed temporary>
+      <v-list nav dense>
+        <v-list-item-group>
+          <v-list-item v-for="(menuItem, index) in menuItems" :key="index">
+            <nuxt-link :to="menuItem.url">
+              <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
+            </nuxt-link>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import constants from "./common/constants";
+
 export default {
   async mounted() {
     const auth = getAuth();
@@ -108,7 +51,8 @@ export default {
   data() {
     return {
       photoUrl: "",
-      drawerFlg: false,
+      drawer: false,
+      menuItems: constants.menuItems,
     };
   },
   computed: {
@@ -120,9 +64,6 @@ export default {
     toMypage() {
       this.$router.push("/mypage");
     },
-    openDrawerMenu() {
-      this.drawerFlg = !this.drawerFlg;
-    },
     logout() {
       this.$store.dispatch("auth/logout");
     },
@@ -131,33 +72,10 @@ export default {
 </script>
 
 <style scoped>
-.gnav--item:not(:last-child) {
-  margin-right: 20px;
-  text-align: right;
+a:link {
+  color: #475569;
 }
-
-.right-enter-active,
-.right-leave-active {
-  transform: translate(0px, 0px);
-  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-}
-.right-enter,
-.right-leave-to {
-  transform: translateX(100vw) translateX(0px);
-}
-
-.drawer-menu-wrapper {
-  position: absolute;
-  z-index: 10;
-  top: 55px;
-  right: 0;
-  /* left: 0 //左に出す場合 */
-  width: 50%;
-  /* height: 100%; */
-  height: 320px;
-  background-color: #f5f5f5;
-}
-.drawer-menu {
-  padding: 24px;
+a:visited {
+  color: #475569;
 }
 </style>

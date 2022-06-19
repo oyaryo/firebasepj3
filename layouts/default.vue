@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <HeaderView />
-    </v-app-bar>
+    <HeaderView />
     <v-main class="bg bg-fixed bg-cover">
       <nuxt />
     </v-main>

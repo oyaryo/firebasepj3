@@ -1,3 +1,7 @@
 <template>
-  <h2>ギャラリーページ</h2>
+<div>
+  <v-container>
+    <p>ギャラリーページ</p>
+  </v-container>
+</div>
 </template>

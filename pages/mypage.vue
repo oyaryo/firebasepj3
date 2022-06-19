@@ -1,64 +1,75 @@
 <template>
   <div>
-    <table>
-      <tr>
-        <th>画像：</th>
-        <td>
-          <input
-            type="file"
-            ref="fileInput"
-            accept="image/jpeg, image/jpg, image/png"
-            style="display: none"
-            @change="updateIcon"
-          />
-          <v-avatar color="indigo">
-            <v-icon dark v-if="!photoUrl" @click="changeIcon">
-              mdi-account-circle
-            </v-icon>
-            <img
-              :src="photoUrl"
-              alt="photoImage"
-              v-if="photoUrl"
-              @click="changeIcon"
-            />
-          </v-avatar>
-          <br />
-        </td>
-      </tr>
-      <tr>
-        <th>お名前：</th>
-        <td>
-          <input type="text" v-model="displayName" :placeholder="displayName" />
-        </td>
-      </tr>
-      <tr>
-        <th>メールアドレス：</th>
-        <td>
-          <input type="email" v-model="email" :placeholder="email" />
-        </td>
-      </tr>
-      <tr>
-        <th>パスワード：</th>
-        <td>
-          <v-btn text @click="sendResetPassword"
-            >（パスワードを変更する）</v-btn
-          >
-        </td>
-      </tr>
-      <tr>
-        <th>登録日：</th>
-        <td>{{ createdAt | dayFormat }}</td>
-      </tr>
-      <tr>
-        <th>更新日：</th>
-        <td>{{ updatedAt | dayFormat }}</td>
-      </tr>
-    </table>
-    <v-row>
-      <v-col>
-        <v-btn color="primary" @click="update">更新</v-btn>
-      </v-col>
-    </v-row>
+    <v-container>
+      <div class="flex justify-center">
+        <table>
+          <tr>
+            <th>画像：</th>
+            <td>
+              <input
+                type="file"
+                ref="fileInput"
+                accept="image/jpeg, image/jpg, image/png"
+                style="display: none"
+                @change="updateIcon"
+              />
+              <v-avatar color="indigo">
+                <v-icon dark v-if="!photoUrl" @click="changeIcon">
+                  mdi-account-circle
+                </v-icon>
+                <img
+                  :src="photoUrl"
+                  alt="photoImage"
+                  v-if="photoUrl"
+                  @click="changeIcon"
+                />
+              </v-avatar>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <th>お名前：</th>
+            <td>
+              <input
+                type="text"
+                v-model="displayName"
+                :placeholder="displayName"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス：</th>
+            <td>
+              <input type="email" v-model="email" :placeholder="email" />
+            </td>
+          </tr>
+          <tr>
+            <th>パスワード：</th>
+            <td>
+              <v-btn text @click="sendResetPassword"
+                >（パスワードを変更する）</v-btn
+              >
+            </td>
+          </tr>
+          <tr>
+            <th>登録日：</th>
+            <td>{{ createdAt | dayFormat }}</td>
+          </tr>
+          <tr>
+            <th>更新日：</th>
+            <td>{{ updatedAt | dayFormat }}</td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><v-btn color="primary" @click="update">更新</v-btn></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><v-btn color="error" @click="logout">ログアウト</v-btn></td>
+          </tr>
+        </table>
+      </div>
+    </v-container>
   </div>
 </template>
 
@@ -229,6 +240,10 @@ export default {
 
         this.photoUrl = photoUrl;
       });
+    },
+
+    logout() {
+      this.$store.dispatch("auth/logout");
     },
   },
 };

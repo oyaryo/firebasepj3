@@ -1,5 +1,7 @@
 export { default as FooterView } from '../../components/FooterView.vue'
+export { default as HeaderBackup } from '../../components/HeaderBackup.vue'
 export { default as HeaderView } from '../../components/HeaderView.vue'
+export { default as CommonConstants } from '../../components/common/constants.js'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
