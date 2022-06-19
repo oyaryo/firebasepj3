@@ -1,12 +1,5 @@
 [
   {
-    "name": "AboutPage",
-    "path": "/AboutPage",
-    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/AboutPage.vue",
-    "chunkName": "pages/AboutPage",
-    "_name": "_6cc2b5cf"
-  },
-  {
     "name": "GalleryPage",
     "path": "/GalleryPage",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/GalleryPage.vue",

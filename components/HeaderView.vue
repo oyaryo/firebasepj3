@@ -4,7 +4,7 @@
     <nav class="hidden md:inline-block">
       <ul class="flex justify-end items-center">
         <li class="gnav--item"><nuxt-link to="/">ホーム</nuxt-link></li>
-        <li class="gnav--item"><NuxtLink to="AboutPage">概要</NuxtLink></li>
+        <!-- <li class="gnav--item"><NuxtLink to="AboutPage">概要</NuxtLink></li> -->
         <li class="gnav--item"><n-link to="NewsPage">お知らせ</n-link></li>
         <li class="gnav--item"><NLink to="GalleryPage">ギャラリー</NLink></li>
         <li class="gnav--item"><nuxt-link to="ShopPage">ショップ</nuxt-link></li>
@@ -48,11 +48,11 @@
                 >ホーム</nuxt-link
               >
             </li>
-            <li class="gnav--item border-b">
+            <!-- <li class="gnav--item border-b">
               <nuxt-link to="AboutPage"
                 class="block px-8 py-2 hover:bg-gray-300 rounded"
                 >概要</nuxt-link
-              >
+              > -->
             </li>
             <li class="gnav--item border-b">
               <nuxt-link to="../NewsPage"

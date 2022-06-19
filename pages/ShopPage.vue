@@ -1,14 +1,11 @@
 <template>
   <div>
-    <div class="key-visual">
-      <img
-        src="@/assets/10073283_MotionElements_art-gallery-3-of-3_converted_a-0101.jpg"
-        alt=""
-      />
-      <h1 class="title-text font-extrabold text-3xl md:text-5xl tracking-wide">
-        Online Shop
-      </h1>
-    </div>
+    <v-container>
+      <div>
+        <p class="mb-0 text-6xl md:text-9xl font-serif text-center">ONLINE SHOP</p>
+        <p class="mt-0 text-lg md:text-xl tracking-wider p-2 font-serif text-center">オンラインショップ</p>
+      </div>
+    </v-container>
 
     <v-container>
       <v-row>

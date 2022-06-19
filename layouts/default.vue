@@ -3,7 +3,7 @@
     <v-app-bar app>
       <HeaderView />
     </v-app-bar>
-    <v-main>
+    <v-main class="bg bg-fixed bg-cover">
       <nuxt />
     </v-main>
     <v-footer>
@@ -11,3 +11,9 @@
     </v-footer>
   </v-app>
 </template>
+
+<style>
+.bg {
+  background-image: url(@/assets/bg_image.jpg);
+}
+</style>

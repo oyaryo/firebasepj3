@@ -1,17 +1,18 @@
 <template>
   <div>
-    <h1 class="title">{{ data.title }}</h1>
-    <p class="publishedAt">{{ data.publishedAt | dayFormat }}</p>
-    <div class="post" v-html="data.content"></div>
+    <v-container>
+      <h1 class="title">{{ data.title }}</h1>
+      <p class="publishedAt">{{ data.publishedAt | dayFormat }}</p>
+      <div class="post" v-html="data.content"></div>
+    </v-container>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import MyMixin from '@/mixins/my-mixin';
+import MyMixin from "@/mixins/my-mixin";
 
 export default {
-
   mixins: [MyMixin],
 
   async asyncData({ params }) {

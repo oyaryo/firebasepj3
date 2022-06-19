@@ -2,22 +2,21 @@
   <div>
     <v-container>
       <div>
-        <p class="text-6xl relative top-4 font-serif">INFORMATION</p>
-        <p class="absolute top-20 tracking-widest p-2 font-serif">最新情報</p>
+        <p class="mb-0 text-6xl md:text-9xl font-serif">INFORMATION</p>
+        <p class="mt-0 text-lg md:text-2xl tracking-wider p-2 font-serif">最新情報</p>
       </div>
     </v-container>
 
     <v-container>
       <div class="my-16">
         <hr class="border border-1 border-dotted border-gray-300">
-        <div class="flex" v-for="n in 3" :key="n">
+        <div class="flex" v-for="content in contents" :key="content.id">
           <div class="w-4/12"></div>
           <div class="w-8/12 p-4 bg-gray-100 news-border">
-            <p class="font-sans text-sm">DATE</p>
-            <p>News Title Header 1</p>
-            <p class="font-serif">
-              test test test test test test test test test test test test test
-              test test test test test test test
+            <p class="font-sans text-sm">DATE {{ content.publishedAt | dayFormat }}</p>
+            <p><nuxt-link :to="`/${content.id}`">{{ content.title }}</nuxt-link></p>
+            <p class="font-serif truncate">
+              {{ content.overview }}
             </p>
           </div>
         </div>
@@ -25,6 +24,27 @@
     </v-container>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import MyMixin from '@/mixins/my-mixin';
+
+export default {
+  mixins: [MyMixin],
+
+  async asyncData() {
+    const { data } = await axios.get(
+      "https://conditionyellow.microcms.io/api/v1/news",
+      {
+        headers: {
+          "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
+        },
+      }
+    );
+    return data;
+  },
+}
+</script>
 
 <style scoped>
 .news-border {
