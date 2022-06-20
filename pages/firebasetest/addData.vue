@@ -4,14 +4,20 @@
       <h2>商品登録</h2>
       <v-row>
         <v-col class="text-center">
-          <input
-            type="file"
-            ref="fileInput"
-            accept="image/jpeg, image/jpg, image/png"
-            style="display: none"
-            @change="updateThumbnail"
-          />
-          <img src="@/assets/product_default.gif" alt="" @click="changeThumbnail"/>
+          <div class="flex justify-center">
+            <input
+              type="file"
+              ref="fileInput"
+              accept="image/jpeg, image/jpg, image/png"
+              style="display: none"
+              @change="updateThumbnail"
+            />
+            <img
+              src="@/assets/product_default.gif"
+              alt=""
+              @click="changeThumbnail"
+            />
+          </div>
           <p class="text-sm">
             （上記の画像をクリックして任意の画像に変更できます）
           </p>
@@ -43,9 +49,6 @@
           <v-btn color="primary" @click="addData(name, description, price)"
             >登録</v-btn
           >
-        </v-col>
-        <v-col cols="3">
-          <v-btn color="secondary" to="/">トップページへ</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -84,27 +87,25 @@ export default {
           createdAt: serverTimestamp(),
         });
         // 商品登録後、商品一覧画面に遷移
-        this.$router.push("./showData");
+        this.$router.push("showData");
       } catch (e) {
         console.error("error: ", e);
       }
     },
 
-    changeThumbnail(){
+    changeThumbnail() {
       this.$refs.fileInput.click();
     },
-    updateThumbnail(){
-      
+    updateThumbnail() {
       // アップロードする画像を用意する
       const thumbnailFile = this.$refs.fileInput.files[0];
       const filePath = `/products/${thumbnailFile.name}`;
       console.log(thumbnailFile);
 
-       // storageへ画像をアップロードする
+      // storageへ画像をアップロードする
       const storage = getStorage(this.$firebase);
       const storageRef = ref(storage, filePath);
-      uploadBytes(storageRef, thumbnailFile)
-        .then(async (snapshot) => {
+      uploadBytes(storageRef, thumbnailFile).then(async (snapshot) => {
         console.log("Uploaded a blob or file.");
 
         // storageにアップロードした画像のURLを取得する
