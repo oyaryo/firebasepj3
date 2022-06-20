@@ -1,17 +1,26 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [
-    "./components/**/*.{vue,js}",
+  content: [
+    "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        "meta-gallery": {
+          100: "#ebedec",
+          200: "#a2a9af",
+          300: "#4c5870",
+          400: "#3d3d3b",
+        },
+      },
+      backgroundImage: {
+        "main-bg": "url('@/assets/bg_image.jpg')",
+      },
+    },
   },
   plugins: [],
 };

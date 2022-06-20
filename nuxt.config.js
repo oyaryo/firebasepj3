@@ -25,7 +25,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/styles'],
+  css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ["@/plugins/firebase.js"],
@@ -34,11 +34,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    "@nuxtjs/vuetify",
-    "nuxt-microcms-module",
-    "@nuxtjs/tailwindcss",
-  ],
+  buildModules: ["@nuxtjs/vuetify", "nuxt-microcms-module", "@nuxt/postcss8"],
   microcms: {
     options: {
       serviceDomain: "conditionyellow",
@@ -60,6 +56,13 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
   devServerHandlers: [],
 };
