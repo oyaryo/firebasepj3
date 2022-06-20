@@ -5,7 +5,6 @@
         <v-card-title>商品一覧</v-card-title>
       </div>
       <div v-for="product in products" :key="product.id">
-        ID: {{ product.id }}<br />
         商品名: {{ product.name }}<br />
         概要： {{ product.description }}<br />
         価格：{{ product.price }}

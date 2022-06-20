@@ -4,15 +4,15 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _17ceb95e = () => interopDefault(import('../pages/addData.vue' /* webpackChunkName: "pages/addData" */))
 const _459101d4 = () => interopDefault(import('../pages/GalleryPage.vue' /* webpackChunkName: "pages/GalleryPage" */))
 const _d9ca6050 = () => interopDefault(import('../pages/MyPage.vue' /* webpackChunkName: "pages/MyPage" */))
 const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpackChunkName: "pages/NewsPage" */))
 const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
+const _3a646a64 = () => interopDefault(import('../pages/showData.vue' /* webpackChunkName: "pages/showData" */))
 const _37a4aee1 = () => interopDefault(import('../pages/vuextest.vue' /* webpackChunkName: "pages/vuextest" */))
 const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
 const _05e5a592 = () => interopDefault(import('../pages/auth/SignUp.vue' /* webpackChunkName: "pages/auth/SignUp" */))
-const _eec5c2dc = () => interopDefault(import('../pages/firebasetest/addData.vue' /* webpackChunkName: "pages/firebasetest/addData" */))
-const _393aa8a0 = () => interopDefault(import('../pages/firebasetest/showData.vue' /* webpackChunkName: "pages/firebasetest/showData" */))
 const _f84a64f6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _d0085e00 = () => interopDefault(import('../pages/_slug/index.vue' /* webpackChunkName: "pages/_slug/index" */))
 
@@ -28,6 +28,10 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/addData",
+    component: _17ceb95e,
+    name: "addData"
+  }, {
     path: "/GalleryPage",
     component: _459101d4,
     name: "GalleryPage"
@@ -44,6 +48,10 @@ export const routerOptions = {
     component: _022fa43c,
     name: "ShopPage"
   }, {
+    path: "/showData",
+    component: _3a646a64,
+    name: "showData"
+  }, {
     path: "/vuextest",
     component: _37a4aee1,
     name: "vuextest"
@@ -55,14 +63,6 @@ export const routerOptions = {
     path: "/auth/SignUp",
     component: _05e5a592,
     name: "auth-SignUp"
-  }, {
-    path: "/firebasetest/addData",
-    component: _eec5c2dc,
-    name: "firebasetest-addData"
-  }, {
-    path: "/firebasetest/showData",
-    component: _393aa8a0,
-    name: "firebasetest-showData"
   }, {
     path: "/",
     component: _f84a64f6,

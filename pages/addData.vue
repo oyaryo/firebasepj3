@@ -62,6 +62,7 @@ import {
   addDoc,
   Firestore,
   serverTimestamp,
+  Timestamp,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
@@ -99,7 +100,7 @@ export default {
     updateThumbnail() {
       // アップロードする画像を用意する
       const thumbnailFile = this.$refs.fileInput.files[0];
-      const filePath = `/products/${thumbnailFile.name}`;
+      const filePath = `/products/${Date.now() + thumbnailFile.name}`;
       console.log(thumbnailFile);
 
       // storageへ画像をアップロードする
