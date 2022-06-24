@@ -45,6 +45,14 @@
         </v-col>
       </v-row>
       <v-row>
+        <v-col>
+          <v-text-field
+            label="決済リンクURLを入力"
+            v-model="paymentUrl"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="3">
           <v-btn color="primary" @click="addData(name, description, price)"
             >登録</v-btn
@@ -72,6 +80,7 @@ export default {
       name: "",
       description: "",
       price: "",
+      paymentUrl: "",
       thumbnailUrl: "",
       createdAt: "",
     };
@@ -84,6 +93,7 @@ export default {
           name: this.name,
           description: this.description,
           price: this.price,
+          paymentUrl: this.paymentUrl,
           thumbnailUrl: this.thumbnailUrl,
           createdAt: serverTimestamp(),
         });

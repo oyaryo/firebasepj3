@@ -2,8 +2,14 @@
   <div>
     <v-container>
       <div>
-        <p class="mb-0 text-6xl md:text-9xl font-serif text-center">ONLINE SHOP</p>
-        <p class="mt-0 text-lg md:text-xl tracking-wider p-2 font-serif text-center">オンラインショップ</p>
+        <p class="mb-0 text-6xl md:text-9xl font-serif text-center">
+          ONLINE SHOP
+        </p>
+        <p
+          class="mt-0 text-lg md:text-xl tracking-wider p-2 font-serif text-center"
+        >
+          オンラインショップ
+        </p>
       </div>
     </v-container>
 
@@ -15,7 +21,11 @@
               v-if="product.thumbnailUrl"
               :src="product.thumbnailUrl"
             ></v-img>
-            <v-img v-if="!product.thumbnailUrl" src="https://firebasestorage.googleapis.com/v0/b/fir-pj3-26803.appspot.com/o/material%2F18866491_MotionElements_new-product-realistic_converted_510030-480x270-3s-q2.gif?alt=media&token=d7c930b9-03b6-4cde-b18c-40c2e00ce18c" alt=""></v-img>
+            <v-img
+              v-if="!product.thumbnailUrl"
+              src="https://firebasestorage.googleapis.com/v0/b/fir-pj3-26803.appspot.com/o/material%2F18866491_MotionElements_new-product-realistic_converted_510030-480x270-3s-q2.gif?alt=media&token=d7c930b9-03b6-4cde-b18c-40c2e00ce18c"
+              alt=""
+            ></v-img>
 
             <v-card-title> {{ product.name }} </v-card-title>
 
@@ -23,6 +33,9 @@
 
             <p class="text-right mx-8">¥{{ product.price }}-.</p>
 
+            <div class="flex justify-center">
+              <a :href="product.paymentUrl" target="_blank"><v-btn color="success" class="m-4">購入</v-btn></a>
+            </div>
           </v-card>
         </v-col>
       </v-row>
