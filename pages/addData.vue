@@ -100,7 +100,7 @@ export default {
     updateThumbnail() {
       // アップロードする画像を用意する
       const thumbnailFile = this.$refs.fileInput.files[0];
-      const filePath = `/products/${Date.now() + thumbnailFile.name}`;
+      const filePath = `/products/${Date.now()}_${thumbnailFile.name}`;
       console.log(thumbnailFile);
 
       // storageへ画像をアップロードする

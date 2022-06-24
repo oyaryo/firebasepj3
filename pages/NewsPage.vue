@@ -20,6 +20,7 @@
             </p>
           </div>
         </div>
+          <hr class="border border-1 border-dotted border-gray-300"/>
       </div>
     </v-container>
   </div>
@@ -57,5 +58,9 @@ a:visited {
 .news-border {
   border: 1px dotted #cbd5e0;
   border-top: none;
+}
+.news-border:last-of-type {
+  border: 1px dotted #cbd5e0;
+  border-bottom: none;
 }
 </style>
