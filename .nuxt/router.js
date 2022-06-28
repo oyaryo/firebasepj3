@@ -6,10 +6,12 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _17ceb95e = () => interopDefault(import('../pages/addData.vue' /* webpackChunkName: "pages/addData" */))
 const _459101d4 = () => interopDefault(import('../pages/GalleryPage.vue' /* webpackChunkName: "pages/GalleryPage" */))
-const _d9ca6050 = () => interopDefault(import('../pages/MyPage.vue' /* webpackChunkName: "pages/MyPage" */))
+const _186e8f98 = () => interopDefault(import('../pages/mypage.vue' /* webpackChunkName: "pages/mypage" */))
 const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpackChunkName: "pages/NewsPage" */))
 const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
 const _3a646a64 = () => interopDefault(import('../pages/showData.vue' /* webpackChunkName: "pages/showData" */))
+const _c8b4ed14 = () => interopDefault(import('../pages/success.vue' /* webpackChunkName: "pages/success" */))
+const _5c3138a2 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 const _37a4aee1 = () => interopDefault(import('../pages/vuextest.vue' /* webpackChunkName: "pages/vuextest" */))
 const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
 const _05e5a592 = () => interopDefault(import('../pages/auth/SignUp.vue' /* webpackChunkName: "pages/auth/SignUp" */))
@@ -36,9 +38,9 @@ export const routerOptions = {
     component: _459101d4,
     name: "GalleryPage"
   }, {
-    path: "/MyPage",
-    component: _d9ca6050,
-    name: "MyPage"
+    path: "/mypage",
+    component: _186e8f98,
+    name: "mypage"
   }, {
     path: "/NewsPage",
     component: _78dab0bf,
@@ -51,6 +53,14 @@ export const routerOptions = {
     path: "/showData",
     component: _3a646a64,
     name: "showData"
+  }, {
+    path: "/success",
+    component: _c8b4ed14,
+    name: "success"
+  }, {
+    path: "/test",
+    component: _5c3138a2,
+    name: "test"
   }, {
     path: "/vuextest",
     component: _37a4aee1,

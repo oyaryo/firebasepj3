@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { STRIPE_PUBLISHABLE_KEY } = process.env
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -65,4 +68,7 @@ export default {
     },
   },
   devServerHandlers: [],
+  env: {
+    STRIPE_PUBLISHABLE_KEY,
+  },
 };
