@@ -200,7 +200,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {"STRIPE_PUBLISHABLE_KEY":"pk_test_51LDPHXAQC2RXpTXk2ni1m8TfAj4LCHFhoO4TAx9ArfeXSNZl67pQmfrOV6gmDg9Vm2GcWpqYIbGZ5GU1ZuFoljnW00l5aPPMfs"}
+      env: {}
     }
     // Only set once
 
