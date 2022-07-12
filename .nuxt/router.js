@@ -6,7 +6,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _17ceb95e = () => interopDefault(import('../pages/addData.vue' /* webpackChunkName: "pages/addData" */))
 const _459101d4 = () => interopDefault(import('../pages/GalleryPage.vue' /* webpackChunkName: "pages/GalleryPage" */))
-const _186e8f98 = () => interopDefault(import('../pages/mypage.vue' /* webpackChunkName: "pages/mypage" */))
+const _d9ca6050 = () => interopDefault(import('../pages/MyPage.vue' /* webpackChunkName: "pages/MyPage" */))
 const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpackChunkName: "pages/NewsPage" */))
 const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
 const _3a646a64 = () => interopDefault(import('../pages/showData.vue' /* webpackChunkName: "pages/showData" */))
@@ -38,9 +38,9 @@ export const routerOptions = {
     component: _459101d4,
     name: "GalleryPage"
   }, {
-    path: "/mypage",
-    component: _186e8f98,
-    name: "mypage"
+    path: "/MyPage",
+    component: _d9ca6050,
+    name: "MyPage"
   }, {
     path: "/NewsPage",
     component: _78dab0bf,
