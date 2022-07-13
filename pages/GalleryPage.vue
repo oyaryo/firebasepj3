@@ -1,8 +1,6 @@
 <template>
   <div>
     <v-container>
-      <!-- <Unity /> -->
-
       <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" width="960" height="600"></canvas>
         <div id="unity-loading-bar">
@@ -30,10 +28,8 @@
 </template>
 
 <script>
-// import Unity from "vue-unity-webgl";
 
 export default {
-  // components: { Unity },
   mounted() {
     var container = document.querySelector("#unity-container");
     var canvas = document.querySelector("#unity-canvas");
@@ -137,7 +133,7 @@ export default {
 </script>
 
 <style scoped>
-#unity-container {
+#unity-canvas {
   margin: 0 auto;
 }
 </style>
