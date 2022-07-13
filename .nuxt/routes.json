@@ -40,6 +40,23 @@
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/showData.vue",
     "chunkName": "pages/showData",
     "_name": "_3a646a64"
+<<<<<<< HEAD
+=======
+  },
+  {
+    "name": "success",
+    "path": "/success",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/success.vue",
+    "chunkName": "pages/success",
+    "_name": "_c8b4ed14"
+  },
+  {
+    "name": "test",
+    "path": "/test",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/test.vue",
+    "chunkName": "pages/test",
+    "_name": "_5c3138a2"
+>>>>>>> tmp
   },
   {
     "name": "vuextest",
