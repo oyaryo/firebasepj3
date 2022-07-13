@@ -14,11 +14,11 @@
     "_name": "_459101d4"
   },
   {
-    "name": "MyPage",
-    "path": "/MyPage",
-    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/MyPage.vue",
-    "chunkName": "pages/MyPage",
-    "_name": "_d9ca6050"
+    "name": "mypage",
+    "path": "/mypage",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/mypage.vue",
+    "chunkName": "pages/mypage",
+    "_name": "_186e8f98"
   },
   {
     "name": "NewsPage",
