@@ -22,6 +22,7 @@
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list nav dense>
         <v-list-item-group>
+<<<<<<< HEAD
           <v-list-item
             v-for="(menuItem, index) in menuItems"
             :key="index"
@@ -30,6 +31,12 @@
             <!-- <nuxt-link :to="menuItem.url"> -->
             <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
             <!-- </nuxt-link> -->
+=======
+          <v-list-item v-for="(menuItem, index) in menuItems" :key="index" :to="menuItem.url">
+              
+              <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
+
+>>>>>>> ed16e0276946f93f211b89839ac6bb1baa252689
           </v-list-item>
         </v-list-item-group>
       </v-list>

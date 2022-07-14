@@ -1,6 +1,19 @@
 <template>
   <div>
+    <v-layout column justify-center align-center>
+      <v-row>
+        <v-col>
+          <h2>This is The Secret Authenticate Route</h2>
+        </v-col>
+      </v-row>
+      <v-row style="margin-bottom: 20px">
+        <v-col>
+          <Unity :unity="unityContext" width="960px" height="600px" />
+        </v-col>
+      </v-row>
+    </v-layout>
     <v-container>
+<<<<<<< HEAD
       <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" width="960" height="600"></canvas>
         <div id="unity-loading-bar">
@@ -17,6 +30,8 @@
         </div>
       </div>
 
+=======
+>>>>>>> ed16e0276946f93f211b89839ac6bb1baa252689
       <div class="flex">
         <div class="w-3/12 h-24 bg-meta-gallery-100"></div>
         <div class="w-3/12 h-24 bg-meta-gallery-200"></div>
@@ -28,6 +43,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
 export default {
   mounted() {
@@ -83,57 +99,38 @@ export default {
     // happening inside the engine, and you would instead like to size up
     // the canvas DOM size and WebGL render target sizes yourself.
     // config.matchWebGLToCanvasSize = false;
+=======
+import UnityWebgl from "unity-webgl";
+>>>>>>> ed16e0276946f93f211b89839ac6bb1baa252689
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Mobile device style: fill the whole browser client area with the game canvas:
+const Unity = new UnityWebgl({
+  loaderUrl: "/Build/Demo.loader.js",
+  dataUrl: "/Build/Demo.data",
+  frameworkUrl: "/Build/Demo.framework.js",
+  codeUrl: "/Build/Demo.wasm",
+});
 
-      var meta = document.createElement("meta");
-      meta.name = "viewport";
-      meta.content =
-        "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
-      document.getElementsByTagName("head")[0].appendChild(meta);
-      container.className = "unity-mobile";
-
-      // To lower canvas resolution on mobile devices to gain some
-      // performance, uncomment the following line:
-      // config.devicePixelRatio = 1;
-
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-
-      unityShowBanner("WebGL builds are not supported on mobile devices.");
-    } else {
-      // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-      canvas.style.width = "960px";
-      canvas.style.height = "600px";
-    }
-
-    loadingBar.style.display = "block";
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        progressBarFull.style.width = 100 * progress + "%";
-      })
-        .then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        })
-        .catch((message) => {
-          alert(message);
-        });
+export default {
+  name: "GalleryPage",
+  // middleware: "login",
+  components: {
+    Unity: UnityWebgl.vueComponent,
+    // Unity,
+  },
+  data() {
+    return {
+      unityContext: Unity,
+      loading: true,
     };
-    document.body.appendChild(script);
   },
 };
 </script>
+<<<<<<< HEAD
 
 <style scoped>
 #unity-canvas {
   margin: 0 auto;
 }
 </style>
+=======
+>>>>>>> ed16e0276946f93f211b89839ac6bb1baa252689
