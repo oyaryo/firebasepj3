@@ -5,6 +5,9 @@
   "HeaderView": {
     "description": "Auto imported from components/HeaderView.vue"
   },
+  "Pagination": {
+    "description": "Auto imported from components/Pagination.vue"
+  },
   "CommonConstants": {
     "description": "Auto imported from components/common/constants.js"
   }

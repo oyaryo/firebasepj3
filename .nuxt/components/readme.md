@@ -8,4 +8,5 @@ You can directly use them in pages and other components without the need to impo
 
 - `<FooterView>` | `<footer-view>` (components/FooterView.vue)
 - `<HeaderView>` | `<header-view>` (components/HeaderView.vue)
+- `<Pagination>` | `<pagination>` (components/Pagination.vue)
 - `<CommonConstants>` | `<common-constants>` (components/common/constants.js)

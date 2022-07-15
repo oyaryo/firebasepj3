@@ -75,5 +75,11 @@
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/_slug/index.vue",
     "chunkName": "pages/_slug/index",
     "_name": "_d0085e00"
+  },
+  {
+    "path": "/NewsPage/:p",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/NewsPage.vue",
+    "name": "page",
+    "_name": "_78dab0bf"
   }
 ]

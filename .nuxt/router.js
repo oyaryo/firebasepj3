@@ -71,6 +71,10 @@ export const routerOptions = {
     path: "/:slug",
     component: _d0085e00,
     name: "slug"
+  }, {
+    path: "/NewsPage/:p",
+    component: _78dab0bf,
+    name: "page"
   }],
 
   fallback: false

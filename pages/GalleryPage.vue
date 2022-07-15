@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { getAuth } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+// import { getAuth } from "firebase/auth";
+// import { getFirestore, doc, getDoc } from "firebase/firestore";
 import UnityWebgl from "unity-webgl";
 
 const Unity = new UnityWebgl({
