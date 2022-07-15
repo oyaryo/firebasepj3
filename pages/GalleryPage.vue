@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout column justify-center align-center>
-      <v-row style="margin-bottom: 20px">
+      <v-row style="margin: 20px">
         <v-col>
           <Unity :unity="unityContext" width="960px" height="600px" />
         </v-col>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import UnityWebgl from "unity-webgl";
 
 const Unity = new UnityWebgl({
@@ -33,6 +35,9 @@ export default {
   components: {
     Unity: UnityWebgl.vueComponent,
   },
+
+  middleware: "checkTicket",
+
   data() {
     return {
       unityContext: Unity,
