@@ -31,13 +31,12 @@
     </v-container>
     <v-container>
       <Pagination
-      :pager="pager"
-      :current="Number(page)"
-      :category="selectedCategory"
-      class="text-center"
-    />
+        :pager="pager"
+        :current="Number(page)"
+        :category="selectedCategory"
+        class="text-center"
+      />
     </v-container>
-    
   </div>
 </template>
 
