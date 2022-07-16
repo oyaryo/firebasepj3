@@ -8,7 +8,7 @@ export default {
       routes.push({
         path: "/NewsPage/:p",
         component: resolve(__dirname, "pages/NewsPage.vue"),
-        name: "page",
+        name: "newspage",
       });
     },
   },
@@ -58,7 +58,7 @@ export default {
 
       // 一覧のページング
       const pages = await axios
-        .get(`https://conditionyellow.microcms.io/api/v1/blog?limit=0`, {
+        .get(`https://conditionyellow.microcms.io/api/v1/news?limit=0`, {
           headers: { "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0" },
         })
         .then((res) =>

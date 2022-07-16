@@ -74,7 +74,7 @@ export const routerOptions = {
   }, {
     path: "/NewsPage/:p",
     component: _78dab0bf,
-    name: "page"
+    name: "newspage"
   }],
 
   fallback: false

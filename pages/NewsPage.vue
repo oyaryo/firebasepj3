@@ -67,7 +67,7 @@ export default {
   async asyncData({ params }) {
     const page = params.p || "1";
     const categoryId = params.categoryId;
-    const limit = 10;
+    const limit = 3;
 
     const { data } = await axios.get(
       `https://conditionyellow.microcms.io/api/v1/news?limit=${limit}${

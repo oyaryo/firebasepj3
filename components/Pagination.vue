@@ -3,7 +3,7 @@
     <ul class="pager">
       <li v-if="current > 1" class="page arrow">
         <nuxt-link :to="getPath(current - 1)">
-          <img src="/images/icon_arrow_left.svg" alt="前のページへ" />
+          <img src="~/assets/icon_arrow_left.svg" width=8 alt="前のページへ" />
         </nuxt-link>
       </li>
       <li v-if="3 < current" class="page">
@@ -35,7 +35,7 @@
       </li>
       <li v-if="current < pager.length" class="page arrow">
         <nuxt-link :to="getPath(current + 1)">
-          <img src="/images/icon_arrow_right.svg" alt="次のページへ" />
+          <img src="~/assets/icon_arrow_right.svg" width=8 alt="次のページへ" />
         </nuxt-link>
       </li>
     </ul>
@@ -69,3 +69,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.pager li {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+</style>

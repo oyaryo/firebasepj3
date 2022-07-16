@@ -79,7 +79,7 @@
   {
     "path": "/NewsPage/:p",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/NewsPage.vue",
-    "name": "page",
+    "name": "newspage",
     "_name": "_78dab0bf"
   }
 ]
