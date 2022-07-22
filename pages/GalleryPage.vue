@@ -38,6 +38,34 @@ export default {
 
   middleware: "checkTicket",
 
+  mounted() {
+    let db;
+    let store;
+    let openRequest = indexedDB.open("db", 1);
+    openRequest.onupgradeneeded = function () {
+      db = openRequest.result;
+      if (!db.objectStoreNames.contains("tokens")) {
+        store = db.createObjectStore("tokens", { keyPath: "id" });
+      }
+    };
+
+    let transaction = db.transaction("tokens", "readwrite");
+
+    let tokens = transaction.objectStore("tokens");
+
+    let token = { id: 1, content: "xxx-xxxxxxxxxxx", createdAt: new Date() };
+
+    let request = tokens.add(token);
+
+    request.onsuccess = function () {
+      console.log("Token added to the store", request.result);
+    };
+
+    request.onerror = function () {
+      console.log("Error", request.error);
+    };
+  },
+
   data() {
     return {
       unityContext: Unity,
