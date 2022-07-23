@@ -22,6 +22,7 @@
 // import { getAuth } from "firebase/auth";
 // import { getFirestore, doc, getDoc } from "firebase/firestore";
 import UnityWebgl from "unity-webgl";
+import { getAuth } from "@firebase/auth";
 
 const Unity = new UnityWebgl({
   loaderUrl: "/Build/Demo.loader.js",
@@ -39,30 +40,43 @@ export default {
   middleware: "checkTicket",
 
   mounted() {
-    let db;
-    let store;
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     let openRequest = indexedDB.open("db", 1);
     openRequest.onupgradeneeded = function () {
-      db = openRequest.result;
+      let db = openRequest.result;
       if (!db.objectStoreNames.contains("tokens")) {
-        store = db.createObjectStore("tokens", { keyPath: "id" });
+        let tokens = db.createObjectStore("tokens", {
+          keyPath: "uToken",
+        });
+        let index = tokens.createIndex("email_idx", "email");
       }
     };
 
-    let transaction = db.transaction("tokens", "readwrite");
+    openRequest.onsuccess = function () {
+      console.log("Token added to the store", openRequest.result);
+      let db = openRequest.result;
+      let transaction = db.transaction("tokens", "readwrite");
+      let tokens = transaction.objectStore("tokens");
+      let token = {
+        uToken: user.uid,
+        email: user.email,
+        createdAt: new Date(),
+      };
+      let request = tokens.add(token);
 
-    let tokens = transaction.objectStore("tokens");
+      request.onsuccess = function () {
+        console.log("Token added to the store", request.result);
+      };
 
-    let token = { id: 1, content: "xxx-xxxxxxxxxxx", createdAt: new Date() };
-
-    let request = tokens.add(token);
-
-    request.onsuccess = function () {
-      console.log("Token added to the store", request.result);
+      request.onerror = function () {
+        console.log("Error", request.error);
+      };
     };
 
-    request.onerror = function () {
-      console.log("Error", request.error);
+    openRequest.onerror = function () {
+      console.log("Error", openRequest.error);
     };
   },
 
