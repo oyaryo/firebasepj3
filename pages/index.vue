@@ -17,7 +17,7 @@
       <div class="flex justify-center">
         <div class="mt-8 w-10/12 border border-dotted border-gray-400 bg-gray-50">
           <div class="text-center font-bold">What's New</div>
-          <div v-for="content in contents.slice(0,3)" :key="content.id" class="m-4">
+          <div v-for="content in contents" :key="content.id" class="m-4">
             <nuxt-link :to="`/${content.id}`">
               {{ content.title }}({{ content.publishedAt | dayFormat }})
             </nuxt-link>
@@ -156,7 +156,7 @@ export default {
 
   async asyncData() {
     const { data } = await axios.get(
-      "https://conditionyellow.microcms.io/api/v1/news",
+      "https://conditionyellow.microcms.io/api/v1/news?limit=3",
       {
         headers: {
           "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
