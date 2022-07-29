@@ -6,7 +6,6 @@
           <Unity :unity="unityContext" width="960px" height="600px" />
         </v-col>
       </v-row>
-   
     </v-layout>
     <v-container>
       <div class="flex">
@@ -44,6 +43,7 @@ export default {
     const auth = getAuth();
     const user = auth.currentUser;
 
+    // indexedDB
     let openRequest = indexedDB.open("db", 1);
     openRequest.onupgradeneeded = function () {
       let db = openRequest.result;

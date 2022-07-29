@@ -36,6 +36,12 @@
     "chunkName": "pages/showData"
   },
   {
+    "name": "test",
+    "path": "/test",
+    "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/test.vue",
+    "chunkName": "pages/test"
+  },
+  {
     "name": "vuextest",
     "path": "/vuextest",
     "component": "/Users/oyaryo/Downloads/coachtech/work/firebasepj3/pages/vuextest.vue",

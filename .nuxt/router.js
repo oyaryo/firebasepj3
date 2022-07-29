@@ -10,6 +10,7 @@ const _d9ca6050 = () => interopDefault(import('../pages/MyPage.vue' /* webpackCh
 const _78dab0bf = () => interopDefault(import('../pages/NewsPage.vue' /* webpackChunkName: "pages/NewsPage" */))
 const _022fa43c = () => interopDefault(import('../pages/ShopPage.vue' /* webpackChunkName: "pages/ShopPage" */))
 const _3a646a64 = () => interopDefault(import('../pages/showData.vue' /* webpackChunkName: "pages/showData" */))
+const _5c3138a2 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 const _37a4aee1 = () => interopDefault(import('../pages/vuextest.vue' /* webpackChunkName: "pages/vuextest" */))
 const _6bc8f8c2 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
 const _05e5a592 = () => interopDefault(import('../pages/auth/SignUp.vue' /* webpackChunkName: "pages/auth/SignUp" */))
@@ -51,6 +52,10 @@ export const routerOptions = {
     path: "/showData",
     component: _3a646a64,
     name: "showData"
+  }, {
+    path: "/test",
+    component: _5c3138a2,
+    name: "test"
   }, {
     path: "/vuextest",
     component: _37a4aee1,
